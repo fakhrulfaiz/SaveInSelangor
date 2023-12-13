@@ -1,0 +1,28 @@
+[
+  {
+    "p1": "Stay calm and check if anyone is injured.",
+    "p2": "Jot down the current time and date of the accident."
+  },
+  {
+    "p1": "Details to capture at the scene:",
+    "p2": "- Visible damage to vehicle (yours and other party's) - entire vehicle.",
+    "p3": "- Visible damage to vehicle (yours and other party's) - close up.",
+    "p4": "- Physical marks on surroundings e.g. skid marks, damaged lamp post, potholes.",
+    "p5": "- Location e.g. road names, landmarks.",
+    "p6": "- If you have a dashboard camera, save the video footage.",
+    "p7": "- Time the accident occurred."
+  },
+  {
+    "p1": "Details to exchange with the other driver:",
+    "p2": "- Vehicle number plate",
+    "p3": "- Driver's NRIC (name, IC number, address)",
+    "p4": "- Driver's driving license",
+    "p5": "- Contact number."
+  },
+  {
+    "p1": "Call your insurance agent or insurance company."
+  },
+  {
+    "p1": "Lodge a police report at your nearest police station within 24 hours."
+  }
+]

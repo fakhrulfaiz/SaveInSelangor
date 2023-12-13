@@ -1,0 +1,32 @@
+[
+  {
+    "p1": "First time losing identification card",
+    "p2": "You can either go straight to JPN to apply & receives a temporary identification card (IC) or apply for it online before heading to JPN",
+    "p3": "Police report is not mandatory but if identification card is lost due to robbery, police report is needed",
+    "p4": "There's a penalty fee of RM110 (RM10 handling fees for replacement of card) if you lose your identification card due to negligence",
+    "p5": "Online application is only valid for Malaysian citizen & does not include changes of information (picture, address and etc)"
+  },
+  {
+    "p1": "Second time losing identification card",
+    "p2": "You will need to make a police report",
+    "p3": "Bring police report to JPN to apply for a replacement identification card",
+    "p4": "There is a penalty of RM310 (RM10 handling fees) for a replacement card."
+  },
+  {
+    "p1": "Third time or more losing identification card",
+    "p2": "You will need to make a police report",
+    "p3": "Bring police report to JPN to apply for a replacement identification card",
+    "p4": "There is a penalty of RM1010 (RM10 handling fees) for a replacement card."
+  },
+  {
+    "p1": "Penalties are exempted for the following:",
+    "p2": "People with disabilities",
+    "p3": "The poor (requires proper proof)",
+    "p4": "Senior citizen over 60 years old",
+    "p5": "Victim of natural disaster/crimes Citizen under the age of 18 years old"
+  },
+  {
+    "p1": "Link",
+    "p2": "https://gantianmykad.jpn.gov.my"
+  }
+]

@@ -1,0 +1,46 @@
+<resources>
+    <string name="google_maps_api_key">AIzaSyCnlG6tjeNkZ0EJvw5vg8VkD9L_QhflyqU</string>
+    <string name="app_name">Assignment</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email Address</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in Now</string>
+    <string name="action_sign_up_short">Sign Up Now</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="sign_in_desc">Sign in to use the app’s features
+and feel safe </string>
+    <string name="sign_up_desc">Don’t have an account?\nWhat are you waiting for?\nJoin the team! </string>
+    <string name="promt_password_hint">Enter your password</string>
+    <string name="just_or_line">just or line</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="email_example_com">email@example.com</string>
+    <string name="call_bomba">call bomba</string>
+    <string name="call_ambulance">call ambulance</string>
+    <string name="call_police">call police</string>
+    <string name="promt_confirm_password">Confirm Password</string>
+    <string name="promt_confirm_password_hint">Re-Enter your password</string>
+    <string name="set_up_your_page">SET UP YOUR PAGE</string>
+    <string name="set_up_promt">Fill in the details below to complete your account</string>
+    <string name="optional">(Optional)</string>
+    <string name="add_photo">add photo</string>
+    <string name="promt_first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name_example">Mike</string>
+    <string name="api_key">AIzaSyCnlG6tjeNkZ0EJvw5vg8VkD9L_QhflyqU</string>
+    <string name="last_name_example">Oxlong</string>
+    <string name="username">Username</string>
+    <string name="username_example">example123</string>
+    <string name="promt_birth_date">Birth Date</string>
+    <string name="birthdate_hint">DD / MM / YYYY</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="back_button_description">back</string>
+    <string name="promt_name">Name</string>
+
+</resources>

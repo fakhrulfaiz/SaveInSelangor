@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_animal_lover"
+    app:startDestination="@id/DestHome">
+
+
+    <!-- Other fragments and actions go here -->
+    <fragment
+        android:id="@+id/DestHome"
+        android:name="com.example.assignment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/NextToReport"
+            app:destination="@id/reportsFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/DestChat"
+        android:name="com.example.assignment.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" />
+
+
+    <fragment
+        android:id="@+id/DestSetting"
+        android:name="com.example.assignment.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings"
+        />
+
+    <fragment
+        android:id="@+id/reportsFragment"
+        android:name="com.example.assignment.ReportsFragment"
+        android:label="Report"
+        tools:layout="@layout/fragment_reports" />
+    <fragment
+        android:id="@+id/addPostFragment"
+        android:name="com.example.assignment.AddPost"
+        android:label="fragment_add_post"
+        tools:layout="@layout/fragment_add_post" />
+    <fragment
+        android:id="@+id/guidesFragment"
+        android:name="com.example.assignment.GuidesFragment"
+        android:label="Guides"
+        tools:layout="@layout/fragment_guides"/>
+    <fragment
+        android:id="@+id/displayListFragment"
+        android:name="com.example.assignment.DisplayListFragment"
+        android:label="fragment_display_list"
+        tools:layout="@layout/fragment_display_list" />
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.example.assignment.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" />
+    <fragment
+        android:id="@+id/newsDetailsFragment"
+        android:name="com.example.assignment.NewsDetailsFragment"
+        android:label="fragment_news_details"
+        tools:layout="@layout/fragment_news_details" />
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.example.assignment.LocationFragment"
+        android:label="fragment_location"
+        tools:layout="@layout/fragment_location" />
+    <fragment
+        android:id="@+id/accountSettingsFragment"
+        android:name="com.example.assignment.AccountSettingsFragment"
+        android:label="fragment_account_settings"
+        tools:layout="@layout/fragment_account_settings" />
+    <fragment
+        android:id="@+id/accountChangePassword"
+        android:name="com.example.assignment.AccountChangePassword"
+        android:label="fragment_account_change_password"
+        tools:layout="@layout/fragment_account_change_password" />
+    <fragment
+        android:id="@+id/accountInformation"
+        android:name="com.example.assignment.AccountInformation"
+        android:label="fragment_account_information"
+        tools:layout="@layout/fragment_account_information" />
+</navigation>

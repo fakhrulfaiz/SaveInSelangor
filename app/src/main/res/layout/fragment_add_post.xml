@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddPost">
+
+    <EditText
+        android:id="@+id/postDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:lines="5"
+         android:gravity="top|start"
+         android:hint="Enter your feedback"/>
+    <Button
+        android:id="@+id/buttonAttachPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/postDescription"
+        android:text="Attach Photo"/>
+
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonAttachPhoto"
+        android:layout_marginTop="32dp"
+        android:stretchMode="columnWidth"
+        android:numColumns="2"
+        android:visibility="gone" />
+
+    <Button
+         android:layout_width="wrap_content"
+         android:layout_height="48dp"
+         android:layout_below="@id/gridView"
+         android:text="Post"
+         android:id="@+id/postButton"/>
+
+</RelativeLayout>

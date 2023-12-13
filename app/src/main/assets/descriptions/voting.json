@@ -1,0 +1,27 @@
+[
+  {
+    "p1": "Walk into the voting station and head towards the first voting clerk.",
+    "p2": "Submit your National Registration Identification Card (NRIC) along with the registration slip or a screenshot of your MySPR Electoral Roll details. Then, the clerk will verify that your name is in the electoral roll and that your identity matches the given NRIC.",
+    "p3": "The clerk will need you to show both sides of your hands for a final examination before they verify your queue number, NRIC, and full name out loud. Listen carefully during the final verification to ensure they got your details right."
+  },
+  {
+    "p1": "After returning your NRIC to you, a second voting clerk will dip your left index finger in the indelible ink."
+  },
+  {
+    "p1": "Then, a third voting clerk will give you the ballot papers."
+  },
+  {
+    "p1": "Head to the next table and hand over your mobile phone for safekeeping."
+  },
+  {
+    "p1": "Proceed to the voting station and make sure your ballot papers are in good condition before casting your vote.",
+    "p2": "A ballot paper should have these three things: a serial number, trademark, and official stamp.",
+    "p3": "Mark a simple 'X' within the empty box next to your chosen party. If you made a mistake in marking or notice an error in the given ballot paper, you can request for another one."
+  },
+  {
+    "p1": "Put your ballot papers in the right box."
+  },
+  {
+    "p1": "Retrieve your mobile phone at the counter and leave the voting station immediately."
+  }
+]

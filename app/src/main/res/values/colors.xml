@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#FFAD4C55</color> <!-- Added FF for alpha -->
+    <color name="colorPrimaryDark">#FF67C415</color> <!-- Added FF for alpha -->
+    <color name="colorAccent">#E9EBEE</color>
+    <color name="gray">#808080</color>
+    <color name="lightgray">#D3D3D3</color>
+    <color name="text_gray">#555555</color>
+    <color name="edittext_color">#F1FFEF</color>
+    <color name="red_theme_color">#DA251D</color>
+    <color name="gray_theme_color">#555555</color>
+    <color name="light_green_color">#6CEA6A</color>
+    <color name="dark_green_color">#479345</color>
+</resources>

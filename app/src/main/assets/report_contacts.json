@@ -1,0 +1,64 @@
+{
+  "reportsContacts": [
+    {
+      "category": "Report crime",
+      "organization": "Malaysian Anti-Corruption Commission (SPRM)",
+      "phone": "+61800886000",
+      "email": "allcppm@sprm.gov.my"
+    },
+    {
+      "category": "Report corruption",
+      "organization": "Malaysian Anti-Corruption Commission (SPRM)",
+      "phone": "+61800886000",
+      "email": "info@sprm.gov.my"
+    },
+    {
+      "category": "Report fake news",
+      "organization": "Malaysia Communication & Multimedia Commission (SKMM)",
+      "phone": "+61800188030",
+      "email": "aduanskmm@cmc.gov.my"
+    },
+    {
+      "category": "Report scam",
+      "organization": "National Scam Response Centre (NSRC)",
+      "phone": "997",
+      "email": null
+    },
+    {
+      "category": "Report road abuser",
+      "organization": "Road Transport Department (JPJ)",
+      "phone": "+60380008000",
+      "email": "aduantrafik@jpj.gov.my"
+    },
+    {
+      "category": "Report social abuse",
+      "organization": "Malaysia Communication & Multimedia Commission (SKMM)",
+      "phone": "+1800188030",
+      "email": "aduanskmm@cmc.gov.my"
+    },
+    {
+      "category": "Report domestic abuse",
+      "organization": "Ministry of Women, Family and Community Development (KPWKM)",
+      "phone": "15999",
+      "email": "taliankasih@kpwkm.gov.my"
+    },
+    {
+      "category": "Report traffic incident",
+      "organization": null,
+      "phone": null,
+      "email": null
+    },
+    {
+      "category": "Report commercial crimes",
+      "organization": "Royal Malaysia Police (PDRM)",
+      "phone": "+60322662222 or 03-26101222",
+      "email": "rmp@rmp.gov.my"
+    },
+    {
+      "category": "Report suspicious activities",
+      "organization": "Royal Malaysia Police (PDRM)",
+      "phone": "+60322662222",
+      "email": null
+    }
+  ]
+}

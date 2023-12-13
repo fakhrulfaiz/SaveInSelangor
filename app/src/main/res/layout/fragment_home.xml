@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment"
+    android:id="@+id/bottom_nav_home">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginBottom="40dp"
+        android:gravity="center_horizontal">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/date_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Friday, 10 November 2023 at 4.30 PM"
+                android:layout_marginEnd="20dp"
+                android:textColor="#7C7C7C"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/greeting_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/date_text"
+                android:text="Good Morning Selangor!"
+                android:textColor="@color/text_gray"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/navProfile"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="false"
+                android:layout_marginLeft="70dp"
+                android:layout_marginEnd="0dp"
+                android:layout_toRightOf="@id/date_text"
+                android:src="@drawable/profile_default">
+
+            </de.hdodenhof.circleimageview.CircleImageView>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="What's Happening?"
+                android:textColor="@color/text_gray"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="false"/>
+
+            <ImageView
+                android:id="@+id/newsList"
+                android:layout_width="318dp"
+                android:layout_height="155dp"
+                android:layout_below="@+id/textView"
+                android:layout_marginTop="-1dp"
+                android:src="@drawable/blank_page"
+                android:clickable="true"
+                android:focusable="true"/>
+
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Need an Emergency Service?"
+            android:textColor="@color/text_gray"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp"/>
+
+        <RelativeLayout
+            android:id="@+id/emergencyButtonsContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="56dp"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:id="@+id/callPolice"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:contentDescription="@string/call_police"
+                android:focusable="true"
+                android:onClick="makeEmergencyCall"
+                android:src="@drawable/royal_malaysian_police" />
+
+            <ImageView
+                android:id="@+id/callAmbulance"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="10dp"
+                android:layout_toEndOf="@id/callPolice"
+                android:clickable="true"
+                android:contentDescription="@string/call_ambulance"
+                android:src="@drawable/emr_ambulance_logo"
+                android:focusable="true"
+                android:onClick="makeEmergencyCall"/>
+
+            <ImageView
+                android:id="@+id/callBomba"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@id/callAmbulance"
+                android:clickable="true"
+                android:contentDescription="@string/call_bomba"
+                android:focusable="true"
+                android:onClick="makeEmergencyCall"
+                android:src="@drawable/bomba_logo" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="left"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Need extra help?"
+                android:textColor="@color/text_gray"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="false"/>
+
+           <GridLayout
+               android:layout_width="match_parent"
+               android:layout_height="230dp"
+               android:rowCount="2"
+               android:columnCount="2"
+               android:layout_below="@+id/textView3">
+
+
+               <!-- Button 1 -->
+               <Button
+                   android:id="@+id/reportBtn"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="fill"
+                   android:layout_rowWeight="1"
+                   android:layout_columnWeight="1"
+                   android:textStyle="bold"
+                   android:text="Report"
+                   android:textSize="19sp"
+                   android:backgroundTint="#FF8282"/>
+
+               <!-- Button 2 -->
+               <Button
+                   android:id="@+id/locationBtn"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="fill"
+                   android:layout_rowWeight="1"
+                   android:layout_columnWeight="1"
+                   android:textStyle="bold"
+                   android:text="Location"
+                   android:textSize="19sp"
+                   android:backgroundTint="#FFAB65"/>
+
+               <!-- Button 3 -->
+               <Button
+                   android:id="@+id/guideBtn"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="fill"
+                   android:layout_rowWeight="1"
+                   android:layout_columnWeight="1"
+                   android:textStyle="bold"
+                   android:text="Guidance"
+                   android:textSize="19sp"
+                   android:backgroundTint="#82ACFF"/>
+
+               <!-- Button 4 -->
+               <Button
+                   android:id="@+id/button4"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="fill"
+                   android:layout_rowWeight="1"
+                   android:layout_columnWeight="1"
+                   android:textStyle="bold"
+                   android:text="Rights"
+                   android:textSize="19sp"
+                   android:backgroundTint="#92FF6C"/>
+
+           </GridLayout>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</FrameLayout>
