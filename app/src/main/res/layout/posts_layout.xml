@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:elevation="10dp"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -101,8 +103,9 @@
             android:layout_margin="3dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:id="@+id/post_image"/>
+            android:id="@+id/post_image"
+            />
 
 
     </LinearLayout>
-</RelativeLayout>
+</androidx.cardview.widget.CardView>
