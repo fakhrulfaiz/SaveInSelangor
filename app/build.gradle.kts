@@ -42,6 +42,7 @@ android {
 }
 
 dependencies {
+    implementation("com.github.chrisbanes:PhotoView:2.3.0")
     implementation ("com.firebaseui:firebase-ui-database:8.0.2")
     implementation ("com.squareup.picasso:picasso:2.8")
     implementation("androidx.cardview:cardview:1.0.0")
@@ -49,14 +50,14 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.google.firebase:firebase-auth:22.2.0")
+    implementation("com.google.firebase:firebase-auth:22.3.0")
     implementation("com.google.firebase:firebase-database:20.3.0")
     implementation("com.google.firebase:firebase-storage:20.3.0")
-    implementation("androidx.annotation:annotation:1.6.0")
+    implementation("androidx.annotation:annotation:1.7.1")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
-    implementation ("com.google.android.libraries.places:places:3.2.0")
+    implementation ("com.google.android.libraries.places:places:3.3.0")
     implementation("androidx.navigation:navigation-fragment:2.7.5")
     implementation("androidx.navigation:navigation-ui:2.7.5")
     testImplementation("junit:junit:4.13.2")
