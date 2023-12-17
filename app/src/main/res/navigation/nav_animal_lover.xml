@@ -82,4 +82,9 @@
         android:name="com.example.assignment.AccountInformation"
         android:label="fragment_account_information"
         tools:layout="@layout/fragment_account_information" />
+    <fragment
+        android:id="@+id/clickPostFragment"
+        android:name="com.example.assignment.ClickPostFragment"
+        android:label="fragment_click_post"
+        tools:layout="@layout/fragment_click_post" />
 </navigation>

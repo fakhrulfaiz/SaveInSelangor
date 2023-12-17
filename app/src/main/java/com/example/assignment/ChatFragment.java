@@ -87,6 +87,7 @@ public class ChatFragment extends Fragment {
                     @Override
                     protected void onBindViewHolder(@NonNull PostsViewHolder holder, int position, @NonNull Posts model) {
 
+                        String postKey = getRef(position).getKey();
                         holder.setFullname(model.getFullname());
                         holder.setTime(model.getTime());
                         holder.setDate(model.getDate());
@@ -94,6 +95,19 @@ public class ChatFragment extends Fragment {
                         holder.setProfileimage(model.getProfileimage());
                         String imageUrl = model.getPostimage().get("img1");
                         holder.setPostimage(imageUrl);
+
+                        holder.mView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // Pass the postKey to the ClickPostFragment
+                                Bundle bundle = new Bundle();
+                                bundle.putString("postKey", postKey);
+
+                                // Navigate to ClickPostFragment
+                                Navigation.findNavController(v).navigate(R.id.clickPostFragment, bundle);
+
+                            }
+                        });
 
                     }
 
