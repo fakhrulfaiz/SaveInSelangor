@@ -1,0 +1,138 @@
+[
+  {
+    "title": "Basic Right",
+    "content": [
+      {
+        "content_title": "Police stops you",
+        "content_description": "rights-description/police-stops.json"
+      },
+      {
+        "content_title": "Questioning by police when stopped",
+        "content_description": "rights-description/questioning-stopped.json"
+      },
+      {
+        "content_title": "Questioning by police without arrest",
+        "content_description": "rights-description/questioning-no-arrest.json"
+      },
+      {
+        "content_title": "Police arrests you",
+        "content_description": "rights-description/police-arrests.json"
+      },
+      {
+        "content_title": "Your rights during arrest",
+        "content_description": "rights-description/rights-during-arrest.json"
+      }
+    ]
+  },
+  {
+    "title": "Road User’s Right",
+    "content": [
+      {
+        "content_title": "Inconsiderate Driving",
+        "content_description": "rights-description/inconsiderate-driving.json"
+      },
+      {
+        "content_title": "Drunk Driving",
+        "content_description": "rights-description/drunk-driving.json"
+      },
+      {
+        "content_title": "Fail to use Indicators",
+        "content_description": "rights-description/fail-to-use-indicators.json"
+      }
+    ]
+  },
+  {
+    "title": "Employee’s Right",
+    "content": [
+      {
+        "content_title": "Payment of Wages",
+        "content_description": "rights-description/payment-of-wages.json"
+      },
+      {
+        "content_title": "Working Hours",
+        "content_description": "rights-description/working-hours.json"
+      },
+      {
+        "content_title": "Sick Leave",
+        "content_description": "rights-description/sick-leave.json"
+      },
+      {
+        "content_title": "Employment of Women",
+        "content_description": "rights-description/employment-of-women.json"
+      }
+    ]
+  },
+  {
+    "title": "Air Traveller’s Right",
+    "content": [
+      {
+        "content_title": "Flight Delayed for 5 Hours or more",
+        "content_description": "rights-description/flight-delayed.json"
+      },
+      {
+        "content_title": "Flight Cancelled",
+        "content_description": "rights-description/flight-cancelled.json"
+      },
+      {
+        "content_title": "Problems with Baggage",
+        "content_description": "rights-description/baggage-problems.json"
+      },
+      {
+        "content_title": "Denied Boarding",
+        "content_description": "rights-description/denied-boarding.json"
+      }
+    ]
+  },
+  {
+    "title": "Consumer’s Right",
+    "content": [
+      {
+        "content_title": "Cancel Transaction",
+        "content_description": "rights-description/cancel-transaction.json"
+      },
+      {
+        "content_title": "Refund",
+        "content_description": "rights-description/refund.json"
+      },
+      {
+        "content_title": "Misleading or False Represented Products",
+        "content_description": "rights-description/misleading-products.json"
+      }
+    ]
+  },
+  {
+    "title": "Disabled Right",
+    "content": [
+      {
+        "content_title": "Basic Rights",
+        "content_description": "rights-description/disabled-basic-rights.json"
+      },
+      {
+        "content_title": "Entitlement",
+        "content_description": "rights-description/disabled-entitlement.json"
+      }
+    ]
+  },
+  {
+    "title": "Fundamental Liberties",
+    "content": [
+      {
+        "content_title": "Life and Personal Liberty",
+        "content_description": "rights-description/life-and-personal-liberty.json"
+      },
+      {
+        "content_title": "Equality",
+        "content_description": "rights-description/equality.json"
+      },
+      {
+        "content_title": "No Slavery or Forced Labour",
+        "content_description": "rights-description/no-slavery.json"
+      },
+      {
+        "content_title": "Freedom of Speech",
+        "content_description": "rights-description/freedom-of-speech.json"
+      }
+    ]
+  }
+
+]

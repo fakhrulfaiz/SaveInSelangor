@@ -309,6 +309,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         Uri.parse("http://maps.google.com/maps?daddr=" + destinationLatLng.latitude + "," + destinationLatLng.longitude)
                 );
                 intent.setPackage("com.google.android.apps.maps");
+
                 startActivity(intent);
             }
         });

@@ -1,0 +1,23 @@
+[
+  {
+    "p1": "Not in uniform, ask for identification",
+    "p2": "• Ask to show their Police authority card politely"
+
+  },{
+  "p1": "Police authority card",
+  "p2": "• Red: Suspended Police Officer. The officer has no right to do anything to you.",
+  "p3": "• Blue: Rank of Inspector and above",
+  "p4": "• Yellow: Below the rank of inspector",
+  "p5": "• White: Reserve Police",
+  "p6": "• Note his name and ID number"
+
+},
+  {
+    "p1": "In uniform",
+    "p2": "• Note his name and ID number on his uniform"
+  },
+  {
+    "p1": "Police vehicle",
+    "p2": "• Note the number plate of the patrol car or motorcycle"
+  }
+]

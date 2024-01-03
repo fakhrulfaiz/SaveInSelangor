@@ -1,6 +1,10 @@
 package com.example.assignment.helper;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,6 +32,7 @@ public class NewsApiHelper {
   //  private static final String API_URL = "https://newsapi.org/v2/everything?q=crime%20Selangor&apiKey=" + API_KEY;
     private static final String API_URL = "https://newsdata.io/api/1/news?apikey=pub_343476faae00b4f4b8c1a6918aaca961ef6de&q=selangor";
 
+    String imgaeUrl;
 
     public List<NewsItem> fetchData() {
         Executor executor = Executors.newSingleThreadExecutor();
@@ -53,7 +58,9 @@ public class NewsApiHelper {
         }
     }
 
-
+    public String getImgaeUrl() {
+        return imgaeUrl;
+    }
 
     private String downloadUrl(String string) throws IOException {
         URL url = new URL(string);
@@ -110,6 +117,10 @@ public class NewsApiHelper {
                 String url = articleObject.getString("link");
 
                 String imageUrl = articleObject.getString("image_url");
+                if(i == 0){
+                    this.imgaeUrl = imageUrl;
+                }
+
                 int maxCharacters = 150;
                 String description = articleObject.getString("description");
                   // Truncate the description to approximately 150 characters
@@ -135,7 +146,7 @@ public class NewsApiHelper {
         return newsList;
     }
 
-    public static class NewsItem {
+    public static class NewsItem implements Parcelable {
         private String title;
         private String url;
         private String description;
@@ -147,6 +158,25 @@ public class NewsApiHelper {
             this.description = description;
             this.imageUrl = imageUrl;
         }
+
+        protected NewsItem(Parcel in) {
+            title = in.readString();
+            url = in.readString();
+            description = in.readString();
+            imageUrl = in.readString();
+        }
+
+        public static final Creator<NewsItem> CREATOR = new Creator<NewsItem>() {
+            @Override
+            public NewsItem createFromParcel(Parcel in) {
+                return new NewsItem(in);
+            }
+
+            @Override
+            public NewsItem[] newArray(int size) {
+                return new NewsItem[size];
+            }
+        };
 
         public String getTitle() {
             return title;
@@ -162,6 +192,19 @@ public class NewsApiHelper {
 
         public String getUrl() {
             return url;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(@NonNull Parcel dest, int flags) {
+            dest.writeString(title);
+            dest.writeString(url);
+            dest.writeString(description);
+            dest.writeString(imageUrl);
         }
     }
 }

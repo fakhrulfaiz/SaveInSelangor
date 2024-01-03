@@ -9,6 +9,7 @@ import androidx.navigation.Navigation;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.assignment.helper.CallHelper;
+import com.example.assignment.helper.NewsApiHelper;
+import com.example.assignment.helper.RoundedTransformation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,7 +33,9 @@ import com.squareup.picasso.Picasso;
 import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -197,17 +202,54 @@ public class HomeFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.locationFragment);
             }
         });
+        Button rightsBtn = view.findViewById(R.id.rightsBtn);
+        rightsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        ImageView newsList = view.findViewById(R.id.newsList);
+                Navigation.findNavController(view).navigate(R.id.rightsFragment);
+            }
+        });
+
+        NewsApiHelper newsApiHelper = new NewsApiHelper();
+        List<NewsApiHelper.NewsItem> news = newsApiHelper.fetchData();
+        ImageView newsList = view.findViewById(R.id.newsList);  // Assuming newsList is an ImageView
+        loadNewsImage(newsList,news);
         newsList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.newsFragment);
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("newsList",  new ArrayList<>(news));
+                // Navigate to the new fragment with the Bundle
+                Navigation.findNavController(view).navigate(R.id.newsFragment, bundle);
             }
         });
 
     }
 
+    void loadNewsImage(ImageView newsList, List<NewsApiHelper.NewsItem> news){
+        // Use a Handler to schedule image loading with a delay
+        Handler handler = new Handler();
+        int delayMillis = 6000;  // Adjust this value according to your needs
+
+        for (int i = 0; i < news.size(); i++) {
+            final int index = i;
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Picasso.get()
+                            .load(news.get(index).getImageUrl())
+                            .fit()
+                            .centerCrop()
+                            .transform(new RoundedTransformation(20, 0))
+                            .into(newsList);
+
+                }
+
+            }, i * delayMillis);  // Delay loading each image by 'i * delayMillis' milliseconds
+
+        }
+    }
     private void updateDateTime() {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, dd MMMM yyyy 'at' hh:mm a", Locale.getDefault());

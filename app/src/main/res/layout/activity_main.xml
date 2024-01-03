@@ -28,7 +28,7 @@
             android:layout_height="0dp"
             app:defaultNavHost="true"
             android:layout_weight="1"
-            app:navGraph="@navigation/nav_animal_lover" />
+            app:navGraph="@navigation/navigation" />
 
 
         <FrameLayout

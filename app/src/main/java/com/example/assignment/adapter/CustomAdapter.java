@@ -20,6 +20,8 @@ import com.example.assignment.DisplayListFragment;
 import com.example.assignment.MainActivity;
 import com.example.assignment.data.Data;
 import com.example.assignment.data.GuideData;
+import com.example.assignment.data.RightContentData;
+import com.example.assignment.data.RightData;
 import com.example.assignment.helper.CallHelper;
 import com.example.assignment.R;
 import com.example.assignment.data.CardViewData;
@@ -93,9 +95,19 @@ public class CustomAdapter<T extends Data> extends BaseAdapter {
             bindCardViewData((CardViewData) item, convertView);
         } else if (item instanceof GuideData) {
             bindGuideData((GuideData) item, convertView);
+        }else if (item instanceof RightData) {
+            bindRightsData((RightData) item, convertView);
         }
 
         return convertView;
+    }
+
+    private void bindRightsData(RightData rightData, View convertView) {
+        TextView titleTextView = convertView.findViewById(R.id.title);
+        titleTextView.setText(rightData.getTitle() != null ? rightData.getTitle() : "");
+
+        convertView.setOnClickListener(v ->
+                openDisplayRightFragment(rightData,convertView));
     }
 
     private void bindCardViewData(CardViewData cardViewData, View convertView) {
@@ -123,18 +135,28 @@ public class CustomAdapter<T extends Data> extends BaseAdapter {
         convertView.setOnClickListener(v ->
                 openDisplayGuideFragment(guideData,convertView));
     }
-
-    private void openDisplayGuideFragment(GuideData guideData, View convertView) {
-        // Assuming your activity implements the necessary navigation method
+    private void openDisplayRightFragment(RightData rightData, View convertView) {
         if (context instanceof AppCompatActivity) {
-            // Create a Bundle to pass data to the fragment
             Bundle bundle = new Bundle();
-            bundle.putSerializable("guideData", (Serializable) guideData);
+
+            bundle.putSerializable("data", (Serializable) rightData);
+
+            bundle.putString("dataType", "rightData"); // Add identifier
 
             Navigation.findNavController(convertView).navigate(R.id.displayListFragment, bundle);
-
         }
     }
+
+    private void openDisplayGuideFragment(GuideData guideData, View convertView) {
+        if (context instanceof AppCompatActivity) {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("data", (Serializable) guideData);
+            bundle.putString("dataType", "guideData"); // Add identifier
+
+            Navigation.findNavController(convertView).navigate(R.id.displayListFragment, bundle);
+        }
+    }
+
 
 
     public void expand(View view) {

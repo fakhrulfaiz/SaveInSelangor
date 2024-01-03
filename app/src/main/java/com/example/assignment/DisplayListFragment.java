@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.assignment.adapter.CustomDisplayAdapter;
+import com.example.assignment.adapter.RightsContentAdapter;
 import com.example.assignment.data.GuideData;
+import com.example.assignment.data.RightContentData;
+import com.example.assignment.data.RightData;
 
 import org.w3c.dom.Text;
 
@@ -34,7 +38,8 @@ public class DisplayListFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private GuideData guideData;
-
+    private RightContentData rightContentData;
+    private RightData rightData;
 
     public DisplayListFragment() {
         // Required empty public constructor
@@ -50,9 +55,9 @@ public class DisplayListFragment extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static DisplayListFragment newInstance(GuideData guideData) {
         DisplayListFragment fragment = new DisplayListFragment();
-        Bundle args = new Bundle();
-        args.putSerializable("guideData", (Serializable) guideData);
-        fragment.setArguments(args);
+//        Bundle args = new Bundle();
+//        args.putSerializable("guideData", (Serializable) guideData);
+//        fragment.setArguments(args);
         return fragment;
     }
 
@@ -60,7 +65,19 @@ public class DisplayListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            guideData = (GuideData) getArguments().getSerializable("guideData");
+            Serializable data = getArguments().getSerializable("data");
+            String dataType = getArguments().getString("dataType");
+
+            if ("rightContentData".equals(dataType) && data instanceof RightContentData) {
+                // Handle RightData
+                rightContentData = (RightContentData) data;
+            } else if ("guideData".equals(dataType) && data instanceof GuideData) {
+                // Handle GuideData
+                guideData = (GuideData) data;
+            }else if ("rightData".equals(dataType) && data instanceof RightData) {
+                // Handle GuideData
+                rightData = (RightData) data;
+            }
         }
     }
 
@@ -84,7 +101,22 @@ public class DisplayListFragment extends Fragment {
             textView.setText(guideData.getTitle());
 
             // Create the custom adapter and set it to the ListView
-            CustomDisplayAdapter adapter = new CustomDisplayAdapter(requireContext(), guideData.getP1(), guideData.getDetails());
+            CustomDisplayAdapter adapter = new CustomDisplayAdapter(requireContext(), guideData.getP1(), guideData.getDetails(), "guides" );
+            listView.setAdapter(adapter);
+        }
+        if (rightContentData != null) {
+            textView.setText(rightContentData.getContentTitle());
+
+
+            // Create the custom adapter and set it to the ListView
+            CustomDisplayAdapter adapter = new CustomDisplayAdapter(requireContext(), rightContentData.getP1(), rightContentData.getContentDescriptionList(), "rightsContent");
+            listView.setAdapter(adapter);
+        } if (rightData != null) {
+            textView.setText(rightData.getTitle());
+
+
+            // Create the custom adapter and set it to the ListView
+            RightsContentAdapter adapter = new RightsContentAdapter(requireContext(), rightData.getContentList());
             listView.setAdapter(adapter);
         }
     }

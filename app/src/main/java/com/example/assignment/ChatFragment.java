@@ -18,9 +18,17 @@ import android.widget.TextView;
 import com.example.assignment.data.Posts;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -36,7 +44,10 @@ public class ChatFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     private RecyclerView postList;
+boolean likeChecker = false;
 
+    DatabaseReference likesRef;
+    private String currID;
 
     public ChatFragment() {
         // Required empty public constructor
@@ -68,6 +79,12 @@ public class ChatFragment extends Fragment {
             String mParam1 = getArguments().getString(ARG_PARAM1);
             String mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        currID = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+
+        likesRef = FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference()
+                .child("Likes");
+
     }
 
 
@@ -96,19 +113,54 @@ public class ChatFragment extends Fragment {
                         String imageUrl = model.getPostimage().get("img1");
                         holder.setPostimage(imageUrl);
 
-                        holder.mView.setOnClickListener(new View.OnClickListener() {
+                        holder.mView.setOnClickListener(v -> {
+                            // Pass the postKey to the ClickPostFragment
+                            Bundle bundle = new Bundle();
+                            bundle.putString("postKey", postKey);
+
+                            // Navigate to ClickPostFragment
+                            Navigation.findNavController(v).navigate(R.id.clickPostFragment, bundle);
+
+                        });
+                        holder.likeBtn.setOnClickListener(v -> {
+                            likeChecker = true;
+                            likesRef.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    assert postKey != null;
+                                    if(likeChecker){
+                                        if(snapshot.child(postKey).hasChild(currID)){
+
+                                            likesRef.child(postKey).child(currID).removeValue();
+                                            likeChecker = false;
+                                        }else{
+
+                                            likesRef.child(postKey).child(currID).setValue(true);
+                                            likeChecker = false;
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                        });
+
+                        holder.commentBtn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                // Pass the postKey to the ClickPostFragment
                                 Bundle bundle = new Bundle();
                                 bundle.putString("postKey", postKey);
 
                                 // Navigate to ClickPostFragment
-                                Navigation.findNavController(v).navigate(R.id.clickPostFragment, bundle);
+                                Navigation.findNavController(v).navigate(R.id.commentFragment, bundle);
 
                             }
                         });
-
+                        holder.setLikeButtonStatus(postKey);
+                        holder.setCommentCount(postKey);
                     }
 
                     @NonNull
@@ -133,11 +185,66 @@ public class ChatFragment extends Fragment {
     public static class PostsViewHolder extends RecyclerView.ViewHolder
     {
         View mView;
-
+        ImageView likeBtn , commentBtn;
+        TextView totalLikes, totalComments;
+        int countLikes, countComments;
+        String currID;
+        DatabaseReference likesRef, postRef;
         public PostsViewHolder(View itemView)
         {
             super(itemView);
             mView = itemView;
+
+            likeBtn = itemView.findViewById(R.id.ic_dislike);
+            commentBtn = itemView.findViewById(R.id.ic_comment);
+            totalLikes = itemView.findViewById(R.id.totalLike);
+            totalComments = itemView.findViewById(R.id.totalComment);
+
+            likesRef = FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                    .getReference()
+                    .child("Likes");
+            postRef = FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                    .getReference()
+                    .child("Posts");
+            currID = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        }
+        public void setCommentCount(final String postKey){
+            postRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.child(postKey).hasChild("comments")){
+                        countComments = (int) snapshot.child(postKey).child("comments").getChildrenCount();
+                        totalComments.setText(Integer.toString(countComments));
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        }
+        public void setLikeButtonStatus(final String postKey){
+            likesRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.child(postKey).hasChild(currID)){
+                        countLikes = (int) snapshot.child(postKey).getChildrenCount();
+                        likeBtn.setImageResource(R.drawable.ic_like);
+                        totalLikes.setText(Integer.toString(countLikes));
+                    }else{
+                        countLikes = (int) snapshot.child(postKey).getChildrenCount();
+                        likeBtn.setImageResource(R.drawable.ic_dislike);
+                        totalLikes.setText(Integer.toString(countLikes));
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         }
 
         public void setFullname(String fullname)

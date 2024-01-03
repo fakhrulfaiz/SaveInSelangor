@@ -55,33 +55,7 @@
 
             </de.hdodenhof.circleimageview.CircleImageView>
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="left"
-            android:layout_marginTop="10dp">
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="What's Happening?"
-                android:textColor="@color/text_gray"
-                android:textSize="19sp"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="false"/>
 
-            <ImageView
-                android:id="@+id/newsList"
-                android:layout_width="318dp"
-                android:layout_height="155dp"
-                android:layout_below="@+id/textView"
-                android:layout_marginTop="-1dp"
-                android:src="@drawable/blank_page"
-                android:clickable="true"
-                android:focusable="true"/>
-
-        </RelativeLayout>
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
@@ -119,13 +93,16 @@
                 android:id="@+id/callAmbulance"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_toEndOf="@id/callPolice"
                 android:clickable="true"
                 android:contentDescription="@string/call_ambulance"
-                android:src="@drawable/emr_ambulance_logo"
                 android:focusable="true"
-                android:onClick="makeEmergencyCall"/>
+                android:onClick="makeEmergencyCall"
+                android:src="@drawable/emr_ambulance_logo" />
 
             <ImageView
                 android:id="@+id/callBomba"
@@ -141,6 +118,34 @@
                 android:focusable="true"
                 android:onClick="makeEmergencyCall"
                 android:src="@drawable/bomba_logo" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="What's Happening?"
+                android:textColor="@color/text_gray"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="false"/>
+
+            <ImageView
+                android:id="@+id/newsList"
+                android:layout_width="318dp"
+                android:layout_height="155dp"
+                android:layout_below="@+id/textView"
+                android:layout_marginTop="-1dp"
+                android:src="@drawable/blank_page"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="news"/>
+
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -208,7 +213,7 @@
 
                <!-- Button 4 -->
                <Button
-                   android:id="@+id/button4"
+                   android:id="@+id/rightsBtn"
                    android:layout_width="0dp"
                    android:layout_height="wrap_content"
                    android:layout_gravity="fill"

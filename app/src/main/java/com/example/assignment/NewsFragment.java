@@ -3,6 +3,8 @@ package com.example.assignment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -39,14 +41,21 @@ public class NewsFragment extends Fragment{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_news, container, false);
 
+        // Retrieve the news list from arguments
+        Bundle args = getArguments();
+        if (args != null && args.containsKey("newsList")) {
+            List<NewsApiHelper.NewsItem> newsList = args.getParcelableArrayList("newsList");
+            listView = view.findViewById(R.id.news_listview);
+            newsAdapter = new NewsAdapter(requireContext(), newsList);
+            listView.setAdapter(newsAdapter);
+        }
+//        // Fetch news data
+//        NewsApiHelper newsApiHelper = new NewsApiHelper();
+//        List<NewsApiHelper.NewsItem> newsList = newsApiHelper.fetchData();
 
-        // Fetch news data
-        NewsApiHelper newsApiHelper = new NewsApiHelper();
-        List<NewsApiHelper.NewsItem> newsList = newsApiHelper.fetchData();
-
-        listView = view.findViewById(R.id.news_listview);
-        newsAdapter = new NewsAdapter(requireContext(), newsList);
-        listView.setAdapter(newsAdapter);
+//        listView = view.findViewById(R.id.news_listview);
+//        newsAdapter = new NewsAdapter(requireContext(), newsList);
+//        listView.setAdapter(newsAdapter);
 
         return view;
     }
