@@ -13,12 +13,23 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/gray_theme_color"/>
+    <TextView
+        android:id="@+id/info_window_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="@color/gray_theme_color"/>
+    <ImageView
+        android:layout_width="18 0dp"
+        android:layout_height="100dp"
+        android:visibility="gone"
+        android:id="@+id/info_window_image"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="44dp">
+        android:layout_marginTop="34dp">
 
         <TextView
             android:id="@+id/info_window_button"

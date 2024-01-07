@@ -3,12 +3,17 @@ package com.example.assignment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.webkit.WebViewClientCompat;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.CookieManager;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class NewsDetailsFragment extends Fragment {
 
@@ -43,6 +48,18 @@ public class NewsDetailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_news_details, container, false);
 
         WebView webView = view.findViewById(R.id.webView);
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        CookieManager.getInstance().setAcceptCookie(true);
+        webView.setWebViewClient(new WebViewClientCompat(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                // Handle URL loading here
+                Log.d("NewsDetailsFragment", "Loading URL: " + request.getUrl().toString());
+                view.loadUrl(request.getUrl().toString());
+                return true;
+            }
+        });
         webView.loadUrl(newsUrl);
 
 

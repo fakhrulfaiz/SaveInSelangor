@@ -4,14 +4,14 @@ import java.util.Map;
 
 public class Posts
 {
-    public String uid, time, date, description, profileimage, fullname;
+    public String uid, time, date, description, profileimage, fullname, subject;
     private Map<String, String> postimage;
     public Posts()
     {
 
     }
 
-    public Posts(String uid, String time, String date, Map<String, String> postimage, String description, String profileimage, String fullname) {
+    public Posts(String uid, String time, String date, Map<String, String> postimage, String description, String profileimage, String fullname, String subject) {
         this.uid = uid;
         this.time = time;
         this.date = date;
@@ -19,6 +19,16 @@ public class Posts
         this.description = description;
         this.profileimage = profileimage;
         this.fullname = fullname;
+        this.subject = subject;
+
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public String getUid() {

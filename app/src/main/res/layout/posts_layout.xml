@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="10dp"
@@ -36,17 +37,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/post_username"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="8dp"
-                    android:text="username"
-                    android:textAlignment="textStart"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/post_username"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="8dp"
+                        android:text="username"
+                        android:textAlignment="textStart"
+                        android:textSize="16sp"
+                        android:layout_weight="1"
+                        android:textStyle="bold"/>
+                    <ImageView
+                        android:id="@+id/reportPostBtn"
+                        android:layout_width="32dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:src="@drawable/ic_more"
+                        android:contentDescription="report"
+                        />
+
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -85,10 +101,27 @@
                         android:text="Time"
                         android:textAlignment="textStart"
                         android:textSize="11sp"/>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
 
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Post Subject"
+            android:id="@+id/post_subject"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginTop="10dp"
+            android:padding="3dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,10 +129,27 @@
             android:id="@+id/post_description"
             android:layout_marginStart="3dp"
             android:layout_marginEnd="3dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:padding="3dp"
             android:textSize="18sp"
             android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text=" Location"
+            android:id="@+id/goToLocationPost"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginTop="10dp"
+            android:padding="3dp"
+            android:textSize="18sp"
+            android:textColor="@color/red_theme_color"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="click to location"
+            app:drawableStartCompat="@drawable/ic_location"
+            android:gravity="center_vertical"
+            android:visibility="gone"/>
 
 
         <com.github.chrisbanes.photoview.PhotoView

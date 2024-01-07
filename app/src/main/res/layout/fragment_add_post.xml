@@ -1,40 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".AddPost">
 
     <EditText
+        android:id="@+id/postSubject"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/edit_text_background"
+        android:ems="10"
+        android:hint="Subject (Optional)"
+        android:inputType="text"
+        android:padding="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
         android:id="@+id/postDescription"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/edit_text_background"
+        android:gravity="top|start"
+        android:hint="Post Caption (Optional)"
         android:inputType="textMultiLine"
         android:lines="5"
-         android:gravity="top|start"
-         android:hint="Enter your feedback"/>
-    <Button
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postSubject" />
+
+    <ImageButton
         android:id="@+id/buttonAttachPhoto"
+        style="@style/WhiteButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/postDescription"
-        android:text="Attach Photo"/>
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="10dp"
+        android:contentDescription="add location"
+        android:src="@drawable/ic_addphoto"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/postDescription" />
+
+
+    <ImageButton
+        android:id="@+id/buttonAttachLocation"
+        style="@style/WhiteButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="10dp"
+        android:contentDescription="add photo"
+        android:src="@drawable/ic_addlocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.316"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postDescription" />
 
     <GridView
         android:id="@+id/gridView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonAttachPhoto"
-        android:layout_marginTop="32dp"
-        android:stretchMode="columnWidth"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
         android:numColumns="2"
-        android:visibility="gone" />
+        android:stretchMode="columnWidth"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationDesc" />
 
     <Button
-         android:layout_width="wrap_content"
-         android:layout_height="48dp"
-         android:layout_below="@id/gridView"
-         android:text="Post"
-         android:id="@+id/postButton"/>
+        android:id="@+id/postButton"
+        style="@style/RedButtonStyle"
+        android:layout_width="309dp"
+        android:layout_height="49dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="32dp"
+        android:text="Post"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridView" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/locationDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:textSize="16sp"
+        android:text="TextView"
+        android:textColor="@color/red_theme_color"
+        android:textStyle="bold"
+        app:drawableStartCompat="@drawable/ic_location"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAttachPhoto" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,23 +1,35 @@
 package com.example.assignment;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+
 import android.widget.TextView;
 
+import com.example.assignment.data.CrimeReportData;
+import com.example.assignment.data.LocationData;
 import com.example.assignment.data.Posts;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -74,11 +86,7 @@ boolean likeChecker = false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            // TODO: Rename and change types of parameters
-            String mParam1 = getArguments().getString(ARG_PARAM1);
-            String mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
         currID = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
         likesRef = FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/")
@@ -89,10 +97,10 @@ boolean likeChecker = false;
 
 
     private void displayAllUSerPosts() {
-
-        Query query = FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/")
+        DatabaseReference postRef = FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/")
                 .getReference()
-                .child("Posts").limitToLast(30);
+                .child("Posts");
+        Query query = postRef.limitToLast(30);
 
         FirebaseRecyclerOptions<Posts> options =
                 new FirebaseRecyclerOptions.Builder<Posts>()
@@ -105,6 +113,7 @@ boolean likeChecker = false;
                     protected void onBindViewHolder(@NonNull PostsViewHolder holder, int position, @NonNull Posts model) {
 
                         String postKey = getRef(position).getKey();
+                        holder.setSubject(model.getSubject());
                         holder.setFullname(model.getFullname());
                         holder.setTime(model.getTime());
                         holder.setDate(model.getDate());
@@ -159,6 +168,54 @@ boolean likeChecker = false;
 
                             }
                         });
+
+                        holder.reportPostBtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showReportOptionsPopup(holder.reportPostBtn);
+                            }
+                        });
+                        holder.reportPostBtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showReportOptionsPopup(holder.reportPostBtn);
+                            }
+                        });
+                        postRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if(snapshot.child(postKey).hasChild("location")){
+                                    holder.LocationButton.setVisibility(View.VISIBLE);
+                                    holder.LocationButton.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+
+                                            LocationData locationData = snapshot.child(postKey).child("location").getValue(LocationData.class);
+                                            if (locationData != null) {
+                                                double lat = locationData.getLat();
+                                                double lng = locationData.getLng();
+                                                LatLng latLng = new LatLng(lat, lng);
+                                                Log.d("ChatFragment", "onSuccess: " + lat + " , " + lng);
+                                                    // You can create an Intent to start the MapsActivity and pass the command as an extra
+                                                    Intent intent = new Intent(getContext(), MapsActivity.class);
+                                                    intent.putExtra("LATLNG", latLng);
+                                                    startActivity(intent);
+                                                    if (getActivity() != null) {
+                                                        getActivity().finish();
+                                                    }
+
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
                         holder.setLikeButtonStatus(postKey);
                         holder.setCommentCount(postKey);
                     }
@@ -182,14 +239,124 @@ boolean likeChecker = false;
 
     }
 
+    private void showReportOptionsPopup(View view) {
+        PopupMenu popupMenu = new PopupMenu(getContext(), view);
+        MenuInflater inflater = popupMenu.getMenuInflater();
+        inflater.inflate(R.menu.report_menu, popupMenu.getMenu());
+
+        // Set gravity for proper alignment
+        popupMenu.setGravity(Gravity.BOTTOM);
+
+        // Set a listener for the report options
+        popupMenu.setOnMenuItemClickListener(new androidx.appcompat.widget.PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                // Handle the selected report option
+                String reportOption = item.getTitle().toString();
+                showReportTypeDialog(reportOption);
+                return true;
+            }
+        });
+
+        // Show the PopupMenu
+        popupMenu.show();
+    }
+
+    private void showReportTypeDialog(String reportReason) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("What type of issue are you reporting?");
+
+        // Add multi-choice checkboxes for different report types
+        // Create a list of ReportType objects with name and description
+        final CharSequence[] items = {
+                "Hate - Slurs, Racist or sexist stereotype, Hateful reference, symbols or logos",
+                "Abuse & Harassment - Insult, Targeted Harassment",
+                "Violent Speech - Violent threat, Wish or Harm, Glorification of Violence",
+                "Privacy - Give some",
+                "Spam - Financial scams, fake engagement, repetitive replies, posting malicious links"
+        };
+
+        // Boolean array to track the selected items
+        final boolean[] checkedItems = new boolean[items.length];
+
+        builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                // Handle the selected report types
+                checkedItems[which] = isChecked;
+            }
+        });
+
+        // Add "Next" button
+        builder.setPositiveButton("Next", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Handle the "Next" button click
+                showConfirmationDialog(reportReason, items, checkedItems);
+                dialog.dismiss();
+            }
+        });
+
+        // Add "Cancel" button
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Cancel the report action
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void showConfirmationDialog(String reportReason, CharSequence[] reportTypes, boolean[] checkedItems) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Report Post");
+
+        // Build a list of selected report types
+        StringBuilder selectedTypes = new StringBuilder();
+        for (int i = 0; i < reportTypes.length; i++) {
+            if (checkedItems[i]) {
+                selectedTypes.append(reportTypes[i]).append("\n");
+            }
+        }
+
+        // Add a message with the selected report types
+        builder.setMessage("Are you sure you want to report this post for the following issues?\n\n" + selectedTypes.toString());
+
+        // Add "Yes" button
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Handle the report action
+                // You can perform further actions or make a network request here
+            }
+        });
+
+        // Add "No" button
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Cancel the report action
+            }
+        });
+
+        builder.show();
+    }
+
+
+
+
     public static class PostsViewHolder extends RecyclerView.ViewHolder
     {
         View mView;
-        ImageView likeBtn , commentBtn;
-        TextView totalLikes, totalComments;
+        ImageView likeBtn , commentBtn, reportPostBtn;
+        TextView totalLikes, totalComments, LocationButton;
         int countLikes, countComments;
         String currID;
         DatabaseReference likesRef, postRef;
+
         public PostsViewHolder(View itemView)
         {
             super(itemView);
@@ -199,7 +366,8 @@ boolean likeChecker = false;
             commentBtn = itemView.findViewById(R.id.ic_comment);
             totalLikes = itemView.findViewById(R.id.totalLike);
             totalComments = itemView.findViewById(R.id.totalComment);
-
+            reportPostBtn = itemView.findViewById(R.id.reportPostBtn);
+            LocationButton = itemView.findViewById(R.id.goToLocationPost);
             likesRef = FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/")
                     .getReference()
                     .child("Likes");
@@ -207,6 +375,8 @@ boolean likeChecker = false;
                     .getReference()
                     .child("Posts");
             currID = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+
+
         }
         public void setCommentCount(final String postKey){
             postRef.addValueEventListener(new ValueEventListener() {
@@ -246,7 +416,16 @@ boolean likeChecker = false;
                 }
             });
         }
+        public void setSubject(String subject)
+        {
+            Log.d("ChatFragment", "setSubject: " + subject);
 
+            TextView username = mView.findViewById(R.id.post_subject);
+            if(subject.equals("")){
+                username.setVisibility(View.GONE);
+            }
+            username.setText(subject);
+        }
         public void setFullname(String fullname)
         {
             TextView username = mView.findViewById(R.id.post_username);

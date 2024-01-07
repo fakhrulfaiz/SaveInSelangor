@@ -1,5 +1,6 @@
 package com.example.assignment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -11,11 +12,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
@@ -24,7 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
-import com.example.assignment.data.CrimeReportData;
+import com.example.assignment.data.LocationData;
 import com.example.assignment.databinding.ActivityMapsBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -37,15 +37,14 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.AutocompletePrediction;
 import com.google.android.libraries.places.api.net.PlacesClient;
-import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -74,7 +73,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private SeekBar seekBar;
     Intent intent;
     private int radius = 10 * 1000;
-    private DatabaseReference crimeReportsRef;
+    private DatabaseReference postRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +89,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         com.example.assignment.databinding.ActivityMapsBinding binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        crimeReportsRef = FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("CrimeReport");
+        postRef = FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Posts");
 
 
 
@@ -210,35 +209,51 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 mMap.clear();
 
                 // Add markers from Firebase within the specified radius
-                crimeReportsRef.addValueEventListener(new ValueEventListener() {
+                postRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            CrimeReportData crimeReport = snapshot.getValue(CrimeReportData.class);
-                            if (crimeReport != null) {
-                                double lat = crimeReport.getLat();
-                                double lng = crimeReport.getLng();
 
-                                // Check if the crime location is within the radius
-                                if (isLocationWithinRadius(lat, lng, currentLat, currentLng, 20.0)) {
-
-                                    String type = crimeReport.getType();
-                                    String date = crimeReport.getDate();
-                                    String time = crimeReport.getTime();
-                                    String description = crimeReport.getDescription();
+                            if(snapshot.hasChild("location")){
+                                LocationData locationData = snapshot.child("location").getValue(LocationData.class);
+                                if(locationData != null){
+                                    double lat = locationData.getLat();
+                                    double lng = locationData.getLng();
                                     Log.d(TAG, "lng: " + lng);
-                                    Log.d(TAG, "type: " + type);
-                                    Log.d(TAG, "description: " + description);
+                                    Log.d(TAG, "lat: " + lat);
+                                    // Check if the crime location is within the radius
+                                    if (isLocationWithinRadius(lat, lng, currentLat, currentLng, 20.0)) {
 
-                                    LatLng latLng = new LatLng(lat, lng);
+//                                        String type = locationData.getType();
+//                                        String date = locationData.getDate();
+//                                        String time = locationData.getTime();
 
-                                    // Add marker with crime information
-                                    mMap.addMarker(new MarkerOptions()
-                                            .position(latLng)
-                                            .title(type)
-                                            .snippet("Date: " + date + "\nTime: " + time + "\nDescription: " + description));
-                                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 10));
+
+
+
+                                        String description = snapshot.child("description").getValue().toString();
+
+                                        String snippet = "";
+                                        String imageUrl = snapshot.child("postimage").child("img1").getValue().toString();
+                                        if(!imageUrl.equals("none")){
+                                            snippet = description + "<@>" + imageUrl;
+                                        }else{
+                                            snippet = description;
+                                        }
+                                        Log.d(TAG, "postimage: " + imageUrl);
+
+                                        String subject = snapshot.child("subject").getValue().toString();
+                                        LatLng latLng = new LatLng(lat, lng);
+
+                                        // Add marker with crime information
+                                        Objects.requireNonNull(mMap.addMarker(new MarkerOptions()
+                                                        .position(latLng)
+                                                        .title(subject)))
+                                                .setSnippet(snippet);
+                                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 10));
+                                    }
                                 }
+
                             }
                         }
                     }
@@ -260,9 +275,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         return distance[0] <= radius * 1000; // Convert radius to meters for comparison
     }
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
 
@@ -280,11 +296,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 // Set the title and button in the custom info window
                 TextView title = infoWindow.findViewById(R.id.info_window_title);
+                TextView desc = infoWindow.findViewById(R.id.info_window_desc);
+                ImageView image =infoWindow.findViewById(R.id.info_window_image);
+               title.setText(marker.getTitle());
+                String snippet = marker.getSnippet();
+                Log.d(TAG, "snippet: " + snippet);
+                if(snippet.contains("<@>")){
+                    String[] parts = snippet.split("<@>");
 
+                    if (parts.length == 2) {
 
-                title.setText(marker.getTitle());
+                        desc.setText(parts[0]);
+                        image.setVisibility(View.VISIBLE);
+                        Log.d(TAG, "getInfoContents: " + parts[1]);
+                        Picasso.get().load(parts[1]).into(image);
+                    }
 
-
+                }else{
+                    desc.setText(snippet);
+                }
                 return infoWindow;
             }
 
@@ -385,6 +415,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                         }
                                     }, executor).thenAccept(result -> parseResult(result));
 
+                                }else if (getIntent() != null && getIntent().hasExtra("LATLNG")) {
+                                    LatLng latLng = getIntent().getParcelableExtra("LATLNG");
+
+                                    // Now you can use the latLng object as needed
+                                    assert latLng != null;
+                                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                                    double latitude = latLng.latitude;
+                                    double longitude = latLng.longitude;
+                                    Log.d(TAG, "onSuccess: " + latitude + " , " + longitude);
+                                    mMap.addMarker(new MarkerOptions().position(latLng).title("").snippet(
+                                            "Lat :" + latitude + "\nLng :" + longitude
+                                    ));
+                                    // Use latitude and longitude as needed in your map-related functionality
                                 }else{
                                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 10));
                                 }
@@ -400,8 +443,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 mMap.getUiSettings().setCompassEnabled(true);
             }
         }
-
-
     }
 
     @Override
@@ -466,7 +507,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if (i == 0) {
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12 ));
                 }
-                mMap.addMarker(new MarkerOptions().position(latLng).title(name));
+                mMap.addMarker(new MarkerOptions().position(latLng).title(name).snippet(
+                        "Lat :" + lat + "\nLng :" + lng
+                ));
             }
             });
         });
