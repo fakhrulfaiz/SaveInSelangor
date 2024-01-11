@@ -128,9 +128,9 @@ private boolean mLocationPermissionGranted = false;
                 if(snapshot.exists()){
 
                     String userName = "@" + Objects.requireNonNull(snapshot.child("username").getValue()).toString();
+                    navUsername.setText(userName);
                     if(snapshot.hasChild("profileimage")){
                         String image = Objects.requireNonNull(snapshot.child("profileimage").getValue()).toString();
-                        navUsername.setText(userName);
                         Log.d("ProfileImageURL", image);
                         Picasso.get().load(image).placeholder(R.drawable.profile_default).memoryPolicy(MemoryPolicy.NO_CACHE).into(navProfileImage);
                     }else{
@@ -221,13 +221,11 @@ private boolean mLocationPermissionGranted = false;
 
 
     private void UserMenuSelector(int itemId) {
-        if (itemId == R.id.nav_profile) {
-            Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
-        } else if (itemId == R.id.nav_home) {
+        if (itemId == R.id.nav_home) {
             Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
         } else if (itemId == R.id.nav_settings) {
-            Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
-        } else if (itemId == R.id.nav_signout) {
+            Navigation.findNavController(this,R.id.NHFMain).navigate(R.id.DestSetting);
+        } else if (itemId == R.id.nav_signOut) {
 
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(MainActivity.this, "Signed out", Toast.LENGTH_SHORT).show();

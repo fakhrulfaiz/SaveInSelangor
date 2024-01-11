@@ -121,4 +121,17 @@ public class DisplayListFragment extends Fragment {
             listView.setAdapter(adapter);
         }
     }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        // Clear the data to release memory
+        clearData();
+    }
+
+    private void clearData() {
+        // Clear the data variables to release memory
+//        guideData = null;
+//        rightContentData = null;
+//        rightData = null;
+    }
 }

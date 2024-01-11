@@ -42,5 +42,7 @@ and feel safe </string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="back_button_description">back</string>
     <string name="promt_name">Name</string>
+    <string name="opengallery">openGallery</string>
+    <string name="opencamera">openCamera</string>
 
 </resources>

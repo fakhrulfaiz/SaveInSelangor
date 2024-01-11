@@ -1,7 +1,9 @@
 package com.example.assignment;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -36,6 +38,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.Navigation;
 
 import com.example.assignment.adapter.ImageAdapter;
+import com.example.assignment.dialog.AddImageDialog;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -70,6 +73,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -107,10 +111,12 @@ public class AddPost extends Fragment {
     private ImageAdapter imageAdapter;
     private List<Uri> uriList = new ArrayList<>();
     private List<String> downloadUriList = new ArrayList<>();
-    private ActivityResultLauncher<Intent> galleryLauncher;
+    private ActivityResultLauncher<Intent> galleryLauncher, cameraLauncher;
     private TextView locationDesc;
     private PlacesClient placesClient;
     private Context context;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_PICK_IMAGE = 2;
 
     public AddPost() {
         // Required empty public constructor
@@ -155,7 +161,17 @@ public class AddPost extends Fragment {
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
                     public void onActivityResult(ActivityResult result) {
-                        handleGalleryResult(result);
+                        handleActivityResult(result, REQUEST_PICK_IMAGE);
+                    //    handleGalleryResult(result);
+                    }
+                });
+        cameraLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        handleActivityResult(result, REQUEST_IMAGE_CAPTURE);
+                     //   handleGalleryResult(result);
                     }
                 });
 
@@ -177,7 +193,7 @@ public class AddPost extends Fragment {
         // Use the custom adapter
 
         auth = FirebaseAuth.getInstance();
-        currentUserID = auth.getCurrentUser().getUid();
+        currentUserID = Objects.requireNonNull(auth.getCurrentUser()).getUid();
         postImageRef = FirebaseStorage.getInstance().getReference();
         usersRef = FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Users");
 
@@ -186,7 +202,10 @@ public class AddPost extends Fragment {
         gridView.setAdapter(imageAdapter);
 
         ImageButton buttonAttachPhoto = view.findViewById(R.id.buttonAttachPhoto);
-        buttonAttachPhoto.setOnClickListener(view12 -> openGallery());
+        buttonAttachPhoto.setOnClickListener(view12 ->
+                //openGallery()
+                openImageDialog()
+        );
 
 
         ImageButton buttonAttachLocation = view.findViewById(R.id.buttonAttachLocation);
@@ -213,12 +232,10 @@ public class AddPost extends Fragment {
                 .setItems(options, (dialog, which) -> {
                     switch (which) {
                         case 0:
-                            // My Location option selected
-                            // Implement logic to get user's current location
+
                             findMyLocation();
                             break;
                         case 1:
-                            // Search Location option selected
                             openLocationSearch();
                             break;
                     }
@@ -226,8 +243,34 @@ public class AddPost extends Fragment {
 
         builder.create().show();
     }
+    private void openImageDialog() {
+        AddImageDialog customDialog = new AddImageDialog(requireContext());
 
-// ...
+        customDialog.setOnCameraClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+                openCamera();
+            }
+        });
+        customDialog.setOnGalleryClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+                openGallery();
+            }
+        });
+
+        customDialog.setOnCancelClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+            }
+        });
+
+        customDialog.show();
+    }
+
 
     private static final int REQUEST_CODE_LOCATION_SEARCH = 101;
 
@@ -289,10 +332,7 @@ public class AddPost extends Fragment {
             });
         }
     }
-    // Create the saveLocation method
 
-    // Example method to find place information based on coordinates
-    // Example method to find place information based on coordinates
     private void findPlace(double lat, double lng, OnPlaceFoundListener listener) {
         // Your existing findPlace method...
         if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -330,8 +370,6 @@ public class AddPost extends Fragment {
             }
         });
     }
-
-    // Define an interface for the callback
     public interface OnPlaceFoundListener {
         void onPlaceFound(Place place);
 
@@ -365,6 +403,42 @@ public class AddPost extends Fragment {
         galleryLauncher.launch(intent);
     }
 
+    private void openCamera() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Activity activity = getActivity();
+        assert activity != null;
+        if (takePictureIntent.resolveActivity(activity.getPackageManager()) != null) {
+            cameraLauncher.launch(takePictureIntent);
+        }
+    }
+    private void handleActivityResult(ActivityResult result, int requestCode) {
+        if (result.getResultCode() == Activity.RESULT_OK) {
+            Intent data = result.getData();
+            if (data != null) {
+                if (requestCode == REQUEST_IMAGE_CAPTURE || requestCode == REQUEST_PICK_IMAGE) {
+                    // Handle the captured image from the camera
+                    Uri imageUri = data.getData();
+                    uriList.add(imageUri);
+                    if (selectedImages.size() < MAX_PHOTOS) {
+                        selectedImages.add(imageUri);
+
+                        imageAdapter.notifyDataSetChanged();
+
+
+                        if (selectedImages.size() == 1) {
+                            // Show GridView when the first image is added
+                            gridView.setVisibility(View.VISIBLE);
+                        }
+
+                        if (selectedImages.size() == MAX_PHOTOS) {
+                            // Hide the "Attach Photo" button when the maximum number of photos is reached
+                            requireView().findViewById(R.id.buttonAttachPhoto).setVisibility(View.GONE);
+                        }
+                    }
+                }
+            }
+        }
+    }
     private void handleGalleryResult(ActivityResult result) {
         if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
             Uri imageUri = result.getData().getData();

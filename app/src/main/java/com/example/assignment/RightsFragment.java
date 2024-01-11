@@ -85,6 +85,15 @@ public class RightsFragment extends Fragment {
         CustomAdapter<RightData> adapter = new CustomAdapter<>(requireContext(), rightDataList);
         listView.setAdapter(adapter);
 
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        // Clear the cache or perform cleanup here
+        clearCache();
+    }
+
+    private void clearCache() {
 
 
     }

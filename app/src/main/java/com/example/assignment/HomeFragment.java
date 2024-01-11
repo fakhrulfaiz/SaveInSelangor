@@ -218,10 +218,11 @@ public class HomeFragment extends Fragment {
         newsList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Bundle bundle = new Bundle();
                 bundle.putParcelableArrayList("newsList",  new ArrayList<>(news));
                 // Navigate to the new fragment with the Bundle
-                Navigation.findNavController(view).navigate(R.id.newsFragment, bundle);
+                Navigation.findNavController(view).navigate(R.id.NAViewPageFragment, bundle);
             }
         });
 
