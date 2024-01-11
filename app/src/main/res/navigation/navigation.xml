@@ -97,4 +97,13 @@
         android:name="com.example.assignment.CommentFragment"
         android:label="fragment_comment"
         tools:layout="@layout/fragment_comment" />
+    <fragment
+        android:id="@+id/announcementFragment"
+        android:name="com.example.assignment.AnnouncementFragment"
+        android:label="fragment_announcement"
+        tools:layout="@layout/fragment_announcement" />
+    <fragment
+        android:id="@+id/NAViewPageFragment"
+        android:name="com.example.assignment.NAViewPageFragment"
+        android:label="" />
 </navigation>

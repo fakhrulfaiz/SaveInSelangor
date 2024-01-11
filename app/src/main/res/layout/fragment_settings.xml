@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/settings_background">
+    android:background="@drawable/settings_background2">
 
     <!-- CircularImageView for profile picture -->
     <de.hdodenhof.circleimageview.CircleImageView
@@ -26,7 +26,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:textSize="20sp"
-        android:textColor="@color/white"/>
+        android:textStyle="bold"
+        android:textColor="@color/red_theme_color"/>
 
     <TextView
         android:id="@+id/usernameTextView"
@@ -35,9 +36,10 @@
         android:text=" @John Doe"
         android:layout_below="@id/nameTextView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
         android:textSize="20sp"
-        android:textColor="@color/white"/>
+        android:textStyle="bold"
+        android:textColor="@color/red_theme_color"/>
     <!-- Buttons Section -->
     <LinearLayout
         android:id="@+id/buttonsLayout"
@@ -45,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/usernameTextView"
         android:orientation="vertical"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:gravity="center"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
@@ -57,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Account"
-            style="@style/AlternateWhiteButtonStyle"
+            style="@style/AlternateRedButtonStyle"
             android:layout_margin="15dp"/>
 
         <!-- Feedback Button -->
@@ -66,7 +68,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Feedback"
-            style="@style/AlternateWhiteButtonStyle"
+            style="@style/AlternateRedButtonStyle"
+            android:layout_margin="15dp"/>
+
+        <!-- Flag Content Button -->
+        <Button
+            android:id="@+id/flagButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Flag Content"
+            style="@style/AlternateRedButtonStyle"
             android:layout_margin="15dp"/>
         <!-- About Button -->
         <Button
@@ -74,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="About"
-            style="@style/AlternateWhiteButtonStyle"
+            style="@style/AlternateRedButtonStyle"
             android:layout_margin="15dp"/>
         <!-- Sign Out Button -->
         <Button
@@ -82,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sign Out"
-            style="@style/AlternateWhiteButtonStyle"
+            style="@style/AlternateRedButtonStyle"
             android:layout_margin="15dp"/>
     </LinearLayout>
 </RelativeLayout>
