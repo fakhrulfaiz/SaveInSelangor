@@ -110,6 +110,7 @@ public class DisplayListFragment extends Fragment {
 
             // Create the custom adapter and set it to the ListView
             CustomDisplayAdapter adapter = new CustomDisplayAdapter(requireContext(), rightContentData.getP1(), rightContentData.getContentDescriptionList(), "rightsContent");
+            Log.d("DisplayListFragment", "onViewCreated: " + rightContentData.getContentDescriptionList().toString());
             listView.setAdapter(adapter);
         } if (rightData != null) {
             textView.setText(rightData.getTitle());

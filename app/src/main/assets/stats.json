@@ -1,0 +1,226 @@
+{
+  "Ampang Jaya": {
+    "2020": {
+      "Murder": 3,
+      "Rape": 28,
+      "Robbery with a Weapon": 0,
+      "Robbery without a Weapon": 377,
+      "Hurting": 76,
+      "Theft": 484,
+      "Car Theft": 171,
+      "Motorcycle Theft": 431,
+      "Lorry/Van Theft": 27,
+      "Burglary": 300,
+      "Total": 1897
+    },
+    "2021": {
+      "Murder": 2,
+      "Rape": 18,
+      "Robbery with a Weapon": 0,
+      "Robbery without a Weapon": 161,
+      "Hurting": 70,
+      "Theft": 461,
+      "Car Theft": 126,
+      "Motorcycle Theft": 240,
+      "Lorry/Van Theft": 15,
+      "Burglary": 192,
+      "Total": 1285
+    }
+  },
+  "Gombak": {
+    "2020": {
+      "Murder": 1,
+      "Rape": 27,
+      "Robbery with a Weapon": 1,
+      "Robbery without a Weapon": 327,
+      "Hurting": 139,
+      "Theft": 358,
+      "Car Theft": 238,
+      "Motorcycle Theft": 603,
+      "Lorry/Van Theft": 46,
+      "Burglary": 367,
+      "Total": 2107
+    },
+    "2021": {
+      "Murder": 7,
+      "Rape": 26,
+      "Robbery with a Weapon": 0,
+      "Robbery without a Weapon": 310,
+      "Hurting": 99,
+      "Theft": 524,
+      "Car Theft": 140,
+      "Motorcycle Theft": 354,
+      "Lorry/Van Theft": 35,
+      "Burglary": 387,
+      "Total": 1882
+    }
+  },
+  "Hulu Selangor": {
+    "2020": {
+      "Murder": 4,
+      "Rape": 22,
+      "Robbery with a Weapon": 0,
+      "Robbery without a Weapon": 45,
+      "Hurting": 33,
+      "Theft": 195,
+      "Car Theft": 21,
+      "Motorcycle Theft": 113,
+      "Lorry/Van Theft": 10,
+      "Burglary": 147,
+      "Total": 590
+    },
+    "2021": {
+      "Murder": 2,
+      "Rape": 31,
+      "Robbery with a Weapon": 0,
+      "Robbery without a Weapon": 77,
+      "Hurting": 35,
+      "Theft": 159,
+      "Car Theft": 14,
+      "Motorcycle Theft": 69,
+      "Lorry/Van Theft": 2,
+      "Burglary": 113,
+      "Total": 502
+    }
+  },
+  "Kajang": {
+    "2020": {
+      "Murder": 14,
+      "Rape": 40,
+      "Robbery with a Weapon": 0,
+      "Robbery without a Weapon": 308,
+      "Hurting": 137,
+      "Theft": 308,
+      "Car Theft": 154,
+      "Motorcycle Theft": 656,
+      "Lorry/Van Theft": 79,
+      "Burglary": 359,
+      "Total": 2055
+    },
+    "2021": {
+      "Murder": 14,
+      "Rape": 46,
+      "Robbery with a Weapon": 0,
+      "Robbery without a Weapon": 340,
+      "Hurting": 126,
+      "Theft": 361,
+      "Car Theft": 114,
+      "Motorcycle Theft": 392,
+      "Lorry/Van Theft": 41,
+      "Burglary": 357,
+      "Total": 1791
+    }
+  },
+  "Klang Selatan": {
+    "2020": {
+      "Murder": 8,
+      "Rape": 23,
+      "Robbery with a Weapon": 0,
+      "Robbery without a Weapon": 256,
+      "Hurting": 69,
+      "Theft": 208,
+      "Car Theft": 144,
+      "Motorcycle Theft": 383,
+      "Lorry/Van Theft": 29,
+      "Burglary": 292,
+      "Total": 1412
+    },
+    "2021": {
+      "Murder": 8,
+      "Rape": 22,
+      "Robbery with a Weapon": 0,
+      "Robbery without a Weapon": 319,
+      "Hurting": 58,
+      "Theft": 481,
+      "Car Theft": 89,
+      "Motorcycle Theft": 254,
+      "Lorry/Van Theft": 31,
+      "Burglary": 394,
+      "Total": 1656
+    }
+  },
+  "Klang Utara": {
+    "2020": {
+      "Murder": 3,
+      "Rape": 20,
+      "Robbery with a Weapon": 1,
+      "Robbery without a Weapon": 197,
+      "Hurting": 77,
+      "Theft": 169,
+      "Car Theft": 70,
+      "Motorcycle Theft": 198,
+      "Lorry/Van Theft": 11,
+      "Burglary": 172,
+      "Total": 918
+    },
+    "2021": {
+      "Murder": 4,
+      "Rape": 20,
+      "Robbery with a Weapon": 0,
+      "Robbery without a Weapon": 152,
+      "Hurting": 89,
+      "Theft": 184,
+      "Car Theft": 52,
+      "Motorcycle Theft": 110,
+      "Lorry/Van Theft": 15,
+      "Burglary": 198,
+      "Total": 824
+    }
+  },
+  "KLIA": {
+    "2020": {
+      "Murder": 0,
+      "Rape": 0,
+      "Robbery with a Weapon": 0,
+      "Robbery without a Weapon": 2,
+      "Hurting": 1,
+      "Theft": 25,
+      "Car Theft": 1,
+      "Motorcycle Theft": 2,
+      "Lorry/Van Theft": 0,
+      "Burglary": 1,
+      "Total": 32
+    },
+    "2021": {
+      "Murder": 0,
+      "Rape": 0,
+      "Robbery with a Weapon": 0,
+      "Robbery without a Weapon": 0,
+      "Hurting": 0,
+      "Theft": 10,
+      "Car Theft": 0,
+      "Motorcycle Theft": 1,
+      "Lorry/Van Theft": 0,
+      "Burglary": 1,
+      "Total": 12
+    }
+  },
+  "Kuala Langat": {
+    "2020": {
+      "Murder": 3,
+      "Rape": 3,
+      "Robbery with a Weapon": 0,
+      "Robbery without a Weapon": 71,
+      "Hurting": 163,
+      "Theft": 85,
+      "Car Theft": 15,
+      "Motorcycle Theft": 182,
+      "Lorry/Van Theft": 12,
+      "Burglary": 33,
+      "Total": 591
+    },
+    "2021": {
+      "Murder": 7,
+      "Rape": 14,
+      "Robbery with a Weapon": 0,
+      "Robbery without a Weapon": 89,
+      "Hurting": 186,
+      "Theft": 110,
+      "Car Theft": 13,
+      "Motorcycle Theft": 135,
+      "Lorry/Van Theft": 6,
+      "Burglary": 80,
+      "Total": 640
+    }
+  }
+}

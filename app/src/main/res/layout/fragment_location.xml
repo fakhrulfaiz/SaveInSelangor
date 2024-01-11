@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#D9D9D9"
+    tools:context=".LocationFragment">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="#D9D9D9"
     tools:context=".LocationFragment">
@@ -40,45 +45,80 @@
     <!-- Second Horizontal LinearLayout with ImageViews -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:orientation="horizontal"
         android:gravity="center">
 
         <!-- ImageView for nearby_fire.png -->
         <ImageView
             android:id="@+id/nearbyFireBtn"
-            android:layout_width="115dp"
-            android:layout_height="200dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:src="@drawable/nearby_fire"
             android:clickable="true"
             android:onClick="onFireClick"
             android:contentDescription="fire%20station"
             android:layout_margin="5dp"
-            android:focusable="true"/>
+            android:focusable="true" />
 
         <!-- ImageView for nearby_police.png -->
         <ImageView
             android:id="@+id/nearbyPoliceBtn"
-            android:layout_width="115dp"
-            android:layout_height="200dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:src="@drawable/nearby_police"
             android:clickable="true"
             android:onClick="onPoliceClick"
             android:contentDescription="police%20station"
-
             android:layout_margin="5dp"
-            android:focusable="true"/>
+            android:focusable="true" />
+
         <!-- ImageView for nearby_hospital.png -->
         <ImageView
             android:id="@+id/nearbyHospitalBtn"
-            android:layout_width="115dp"
-            android:layout_height="200dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:clickable="true"
-            android:contentDescription="hospital"
             android:onClick="onHospitalClick"
             android:src="@drawable/nearby_hospital"
             android:layout_margin="5dp"
-            android:focusable="true"/>
+            android:contentDescription="hospital"
+            android:focusable="true" />
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <Spinner
+            android:id="@+id/placeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="16dp"
+            android:paddingStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/table_cell_border"/>
+
+            <TableLayout
+                android:layout_below="@id/placeSpinner"
+                android:layout_marginTop="11dp"
+                android:id="@+id/crimeTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:stretchColumns="*">
+
+            </TableLayout>
+
+    </RelativeLayout>
+
 </LinearLayout>
+
+</ScrollView>

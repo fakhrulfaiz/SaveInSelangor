@@ -42,10 +42,10 @@ public class RightReader {
                             String file = contentObject.optString("content_description");
 
                             // Process content description
-                            if(i == 0){
+
                                 Log.d("RightReader", file);
                                 processContentDescription(context, file, contentData);
-                            }
+
 
 
                             rightData.addContent(contentData);
@@ -82,7 +82,7 @@ public class RightReader {
                             if (key.equals("p1")) {
 
                                 p1 = contentObject.getString(key);
-                                Log.d("RightReader", "p1: " + p1);
+                             //   Log.d("RightReader", "p1: " + p1);
                                 contentData.addP1(p1);
                             } else {
                                 String detail = contentObject.getString(key);
@@ -107,6 +107,7 @@ public class RightReader {
 
     private static String loadJSONFromAsset(Context context, String fileName) {
         String json;
+        Log.d("RightReader", "loadJSONFromAsset: " + fileName);
         try {
             InputStream is = context.getAssets().open(fileName);
 

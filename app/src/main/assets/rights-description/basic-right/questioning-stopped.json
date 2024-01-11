@@ -1,0 +1,22 @@
+[
+  {
+    "p1": "Your Identification",
+    "p2": "Only give your name, ID card number, and address."
+  },
+  {
+    "p1": "Police asks other questions",
+    "p2": "• Politely ask 'Am I under arrest?'"
+  },
+  {
+    "p1": "When you are under arrest",
+    "p2": "You are arrested if the police...",
+    "p3": "• tells you 'yes'.\n • does not allow you to leave/want to take you to the station.\n• handcuffs you. ",
+    "p4": "If you are not under arrest",
+    "p5": "You are allowed to walk away/refuse to follow him back to the station or anywhere else."
+
+  },
+  {
+    "p1": "When you cannot be arrested",
+    "p2": "The police cannot arrest you because you are a potential witness and want to take a statement from you (112/Witness Statement)"
+  }
+]

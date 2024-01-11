@@ -6,6 +6,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,9 +20,24 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.example.assignment.helper.CheckMapHelper;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Iterator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,7 +54,10 @@ public class LocationFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private Spinner placeSpinner;
+    private TableLayout crimeTable;
+    private JSONObject crimeData;
+    Context context;
     public LocationFragment() {
         // Required empty public constructor
     }
@@ -66,6 +87,7 @@ public class LocationFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        context = getContext();
     }
 
     @Override
@@ -83,7 +105,12 @@ public class LocationFragment extends Fragment {
         ImageView fireButton = view.findViewById(R.id.nearbyFireBtn);
         ImageView policeButton = view.findViewById(R.id.nearbyPoliceBtn);
         ImageView hospitalButton = view.findViewById(R.id.nearbyHospitalBtn);
+        placeSpinner = view.findViewById(R.id.placeSpinner);
+        crimeTable = view.findViewById(R.id.crimeTable);
 
+
+        loadJSONData();
+        setupSpinner();
         // Set click listeners for the ImageViews
         fireButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,6 +170,116 @@ public class LocationFragment extends Fragment {
         if (getActivity() != null) {
             getActivity().finish();
         }
+    }
+
+    private void loadJSONData() {
+        AssetManager assetManager = context.getAssets();
+        try {
+            InputStream inputStream = assetManager.open("stats.json");
+            InputStreamReader reader = new InputStreamReader(inputStream);
+
+            StringBuilder jsonString = new StringBuilder();
+            char[] buffer = new char[1024];
+            int read;
+            while ((read = reader.read(buffer)) != -1) {
+                jsonString.append(buffer, 0, read);
+            }
+
+            crimeData = new JSONObject(jsonString.toString());
+
+            reader.close();
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setupSpinner() {
+        final ArrayAdapter<String> placeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item);
+        placeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        Iterator<String> placeIterator = crimeData.keys();
+        while (placeIterator.hasNext()) {
+            String place = placeIterator.next();
+            placeAdapter.add(place);
+        }
+
+        placeSpinner.setAdapter(placeAdapter);
+
+        placeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                updateTable(placeAdapter.getItem(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing here
+            }
+        });
+    }
+
+    private void updateTable(String selectedPlace) {
+        crimeTable.removeAllViews();
+
+        // Get the place data for the selected place
+        try {
+            JSONObject placeData = crimeData.getJSONObject(selectedPlace);
+
+            // Get the years as an array
+            JSONArray years = placeData.names();
+            if (years != null) {
+                // Create header row with years
+                TableRow headerRow = new TableRow(context);
+                headerRow.addView(createTableCell("Crime Type"));
+
+                for (int i = 0; i < years.length(); i++) {
+                    String year = years.getString(i);
+                    headerRow.addView(createTableCell(year));
+                }
+
+                crimeTable.addView(headerRow);
+
+                // Iterate over crime types
+                Iterator<String> crimeIterator = placeData.getJSONObject(years.getString(0)).keys();
+                while (crimeIterator.hasNext()) {
+                    String crimeType = crimeIterator.next();
+
+                    // Create data row with crime type and counts for each year
+                    TableRow dataRow = new TableRow(context);
+                    dataRow.addView(createTableCell(crimeType));
+
+                    for (int i = 0; i < years.length(); i++) {
+                        String year = years.getString(i);
+                        JSONObject crimeDetails = placeData.getJSONObject(year);
+                        int count = crimeDetails.getInt(crimeType);
+                        dataRow.addView(createTableCell(String.valueOf(count)));
+                    }
+
+                    crimeTable.addView(dataRow);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private TextView createTableCell(String text) {
+        TextView textView = new TextView(context);
+        textView.setText(text);
+        textView.setPadding(16, 16, 16, 16);
+
+        // Set background drawable for border
+        if(text.equals("Crime Type") || text.equals("2020") || text.equals("2021")){
+            textView.setBackgroundResource(R.drawable.header_border);
+            textView.setTextColor(Color.WHITE);
+            textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
+        }else{
+            textView.setBackgroundResource(R.drawable.table_cell_border);
+        }
+
+
+        return textView;
     }
 
 

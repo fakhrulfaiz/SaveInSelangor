@@ -2,6 +2,9 @@ package com.example.assignment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 
@@ -25,6 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
@@ -33,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button login;
     private FirebaseAuth auth;
     private Button register;
-    private ImageView callPolice,callAmbulance,callBomba;
     private static final int REQUEST_CODE = 123;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +47,22 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password_loginActivity);
         login = findViewById(R.id.login_loginActivity);
         register = findViewById(R.id.openRegister);
-        callPolice = findViewById(R.id.callPolice);
-        callAmbulance = findViewById(R.id.callAmbulance);
-        callBomba = findViewById(R.id.callBomba);
+        ImageView callPolice = findViewById(R.id.callPolice);
+        ImageView callAmbulance = findViewById(R.id.callAmbulance);
+        ImageView callBomba = findViewById(R.id.callBomba);
         auth = FirebaseAuth.getInstance();
 
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Call the common onClick method when any button is clicked
+                makeEmergencyCall(v);
+            }
+        };
 
+        callPolice.setOnClickListener(onClickListener);
+        callAmbulance.setOnClickListener(onClickListener);
+        callBomba.setOnClickListener(onClickListener);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,17 +87,30 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+    public boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if(user != null){
+        if(user != null && isNetworkAvailable(this)){
             startActivity(new Intent(LoginActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
             finish();
+        }else{
+
+//            startActivity(new Intent(LoginActivity.this, LoginOffline.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+//            finish();
         }
     }
+
+
     private void loginUser(String emailText, String passwordText) {
 
 

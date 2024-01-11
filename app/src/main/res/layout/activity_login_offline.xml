@@ -128,7 +128,7 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:autofillHints="password"
-       android:drawableEnd="@drawable/ic_password"/>
+            android:drawableEnd="@drawable/ic_password"/>
 
         <Button
             android:id="@+id/login_loginActivity"

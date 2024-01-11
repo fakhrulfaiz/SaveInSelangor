@@ -79,10 +79,10 @@ public class RightsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         ListView listView = view.findViewById(R.id.listview);
-        List<RightData> guideDataList = RightReader.readRightData(requireContext());
+        List<RightData> rightDataList = RightReader.readRightData(requireContext());
 
 
-        CustomAdapter<RightData> adapter = new CustomAdapter<>(requireContext(), guideDataList);
+        CustomAdapter<RightData> adapter = new CustomAdapter<>(requireContext(), rightDataList);
         listView.setAdapter(adapter);
 
 

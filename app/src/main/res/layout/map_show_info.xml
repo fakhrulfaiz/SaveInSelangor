@@ -20,7 +20,7 @@
         android:textSize="15sp"
         android:textColor="@color/gray_theme_color"/>
     <ImageView
-        android:layout_width="18 0dp"
+        android:layout_width="180dp"
         android:layout_height="100dp"
         android:visibility="gone"
         android:id="@+id/info_window_image"/>

@@ -1,0 +1,24 @@
+[
+  {
+    "p1": "Ask why you are under arrest",
+    "p2": "An arrest is unlawful if you are not informed of the reason",
+    "p3": "Do not resist arrest",
+    "p4": "The Police have the right to use reasonable force to arrest you if you resist"
+  },
+  {
+    "p1": "Ask for police station location",
+    "p2": "The arresting Police Officer must immediately take you to the nearest Police Station and no other place."
+  },
+  {
+    "p1": "What to do when arrested",
+    "p2": "You have the right to a phone call :",
+    "p3": "  • Relatives\n  • Lawyer",
+    "p4": "You may also call a nearby Legal Aid Centre. Inform them:",
+    "p5": "  • you have been arrested\n  • the time, place, and reason for the arrest\n  • the Police station location"
+  },
+  {
+    "p1": "What happens after arrest",
+    "p2": "You may be detained up to 24 hours:",
+    "p3": "  • at the station, or  • in a lock-up to 'assist' police investigation"
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "p1": "Right to consult a lawyer",
+    "p2": "Once you request the presence of a lawyer, you have the right to consult the lawyer at the Police Station. The Police must accord you a reasonable period of time for the lawyer to meet you and for the consultation to take place. However, the Police can deny you this right if the delay in questioning you may cause the occurrence of another crime or cause danger to others."
+  },
+  {
+    "p1": "Clothing",
+    "p2": "You are allowed to have one set of clothing on you in the lock-up."
+  },
+  {
+    "p1": "Personal Belongings",
+    "p2": "The Police must record and place all your personal belongings in safe custody.",
+    "p3": "Your personal belongings must be returned to you upon release."
+  },
+  {
+    "p1": "Welfare",
+    "p2": "You are allowed to take a bath two times a day.",
+    "p3": "If you are sick, you have the right to receive immediate medical attention.",
+    "p4": "You are to be given proper and adequate food and water during detention."
+  },
+  {
+    "p1": "How long can the Police detain you",
+    "p2": "The police can only detain you up to 24 hours for investigation.",
+    "p3": "The duty of the police is to complete the investigation within 24 hours and to release you as soon as possible.",
+    "p4": "If the police cannot complete the investigation within 24 hours, the police must bring you before a Magistrate for a remand order to extend your detention beyond 24 hours ('Remand Order')."
+  }
+]

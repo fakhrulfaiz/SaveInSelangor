@@ -24,7 +24,6 @@ import android.widget.ImageView;
 
 import android.widget.TextView;
 
-import com.example.assignment.data.CrimeReportData;
 import com.example.assignment.data.LocationData;
 import com.example.assignment.data.Posts;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;

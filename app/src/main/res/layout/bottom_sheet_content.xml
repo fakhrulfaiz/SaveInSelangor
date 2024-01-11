@@ -1,0 +1,35 @@
+<!-- res/layout/bottom_sheet_content.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapsActivity">
+
+    <Spinner
+        android:id="@+id/placeSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:paddingStart="30dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/table_cell_border"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/placeSpinner"
+        android:layout_marginTop="11dp">
+
+        <TableLayout
+            android:id="@+id/crimeTable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:stretchColumns="*">
+
+        </TableLayout>
+    </ScrollView>
+</RelativeLayout>
