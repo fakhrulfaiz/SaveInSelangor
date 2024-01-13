@@ -106,4 +106,8 @@
         android:id="@+id/NAViewPageFragment"
         android:name="com.example.assignment.NAViewPageFragment"
         android:label="" />
+    <fragment
+        android:id="@+id/flagContentFragment"
+        android:name="com.example.assignment.FlagContentFragment"
+        android:label="FlagContentFragment" />
 </navigation>

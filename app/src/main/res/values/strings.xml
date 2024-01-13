@@ -44,5 +44,6 @@ and feel safe </string>
     <string name="promt_name">Name</string>
     <string name="opengallery">openGallery</string>
     <string name="opencamera">openCamera</string>
+    <string name="flag_content_long_text">Notice any misleading, false, or missing information?\n\n If you\'ve encountered inaccuracies or difficulties, we\'re here to help. Did you call the wrong number while trying to report to authorities?\n\n Please use the button below to drop us an email and report the issue. Your feedback is crucial in ensuring the accuracy of our information and improving the application for everyone. Thank you for helping us maintain a reliable and helpful service.</string>
 
 </resources>

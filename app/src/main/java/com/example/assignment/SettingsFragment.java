@@ -119,6 +119,14 @@ public class SettingsFragment extends Fragment {
 
             }
         });
+        Button flagButton = view.findViewById(R.id.flagButton);
+        flagButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.flagContentFragment);
+            }
+        });
+
 
 
     }
