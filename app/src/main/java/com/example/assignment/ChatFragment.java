@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import com.example.assignment.data.LocationData;
 import com.example.assignment.data.Posts;
+import com.example.assignment.helper.RoundedTransformation;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.maps.model.LatLng;
@@ -465,7 +466,7 @@ boolean likeChecker = false;
 
             // Check if postimage is not empty, not null, and not equal to "none"
             if (postimage != null && !postimage.isEmpty() && !postimage.equals("none")) {
-                Picasso.get().load(postimage).into(PostImage);
+                Picasso.get().load(postimage).fit().transform(new RoundedTransformation(30, 0)).into(PostImage);
             } else {
                 // If postimage is empty, null, or "none," hide the ImageView
                 PostImage.setVisibility(View.GONE);

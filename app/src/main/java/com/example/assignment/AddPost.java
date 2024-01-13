@@ -377,7 +377,6 @@ public class AddPost extends Fragment {
     }
 
 
-    // Call the saveLocation method when you want to save a location
     private void saveLocationToFirebase(DatabaseReference newPostRef) {
 
             // Create a Location object to store the details
@@ -439,29 +438,7 @@ public class AddPost extends Fragment {
             }
         }
     }
-    private void handleGalleryResult(ActivityResult result) {
-        if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-            Uri imageUri = result.getData().getData();
-            Log.d(TAG, String.valueOf(imageUri));
-            uriList.add(imageUri);
-            if (selectedImages.size() < MAX_PHOTOS) {
-                selectedImages.add(imageUri);
 
-                imageAdapter.notifyDataSetChanged();
-
-
-                if (selectedImages.size() == 1) {
-                    // Show GridView when the first image is added
-                    gridView.setVisibility(View.VISIBLE);
-                }
-
-                if (selectedImages.size() == MAX_PHOTOS) {
-                    // Hide the "Attach Photo" button when the maximum number of photos is reached
-                    requireView().findViewById(R.id.buttonAttachPhoto).setVisibility(View.GONE);
-                }
-            }
-        }
-    }
     private void saveImageToFirebaseStorage(){
 
         Calendar calForDate = Calendar.getInstance();
@@ -536,14 +513,17 @@ public class AddPost extends Fragment {
                     postsMap.put("fullname", userFullname);
                     postsMap.put("subject", Subject);
                     DatabaseReference newPostRef = postRef.child(currentUserID + postRandomName);
-                    if (attachedLocation != null) {
-                        saveLocationToFirebase(newPostRef);
-                    }
+                    DatabaseReference newPostRef2 = postRef.child(currentUserID + postRandomName);
+
                     postRef.child(currentUserID + postRandomName).updateChildren(postsMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
 
+                                    if (attachedLocation != null) {
+                                        saveLocationToFirebase(newPostRef2);
+
+                                    }
 
                                     if(!urlMap.isEmpty()){
                                         newPostRef.child("postimage").updateChildren(urlMap);
@@ -557,7 +537,7 @@ public class AddPost extends Fragment {
                                     Navigation.findNavController(view).popBackStack();
                                     Toast.makeText(getContext(), "Success!", Toast.LENGTH_SHORT).show();
                                 }else{
-                                    Toast.makeText(getContext(), "Success!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "Failed!", Toast.LENGTH_SHORT).show();
                                 }
                         }
                     });
