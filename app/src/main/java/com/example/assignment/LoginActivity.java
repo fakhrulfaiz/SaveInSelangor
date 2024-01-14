@@ -10,15 +10,19 @@ import androidx.annotation.NonNull;
 
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.assignment.helper.CallHelper;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -85,6 +89,36 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+        TextView forgotPassword = findViewById(R.id.forgotPassword);
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle the click on the "Forgot Password" text
+                // For simplicity, let's redirect the user to Firebase's default password recovery flow
+                String emailText = email.getText().toString().trim();
+
+                if (TextUtils.isEmpty(emailText)) {
+                    Toast.makeText(LoginActivity.this, "Enter your registered email ID", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Send password reset email
+                auth.sendPasswordResetEmail(emailText)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d("LoginActivity", "onComplete: " + emailText);
+                                    Toast.makeText(LoginActivity.this, "Password reset email sent. Check your email.", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "Failed to send password reset email. Please check your email address.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
+
 
     }
     public boolean isNetworkAvailable(Context context) {
