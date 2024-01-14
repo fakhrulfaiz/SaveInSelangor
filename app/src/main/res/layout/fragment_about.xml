@@ -17,6 +17,7 @@
         android:textColor="@color/red_theme_color"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
+
         />
 
     <ScrollView
@@ -24,15 +25,21 @@
         android:layout_height="match_parent"
         android:layout_below="@id/textViewAboutTitle"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:padding="8dp">
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp"
-            android:layout_marginBottom="16dp"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="100dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/about_background_shape">
             <TextView
@@ -43,7 +50,7 @@
                 android:padding="8dp"
                 android:text="About SafeInSelangor"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold|italic" />
 
             <TextView
@@ -51,9 +58,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
+                android:textStyle="bold"
                 android:text="@string/about_description"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

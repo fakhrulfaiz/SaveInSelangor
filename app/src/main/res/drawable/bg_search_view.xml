@@ -7,8 +7,8 @@
 
     <!-- Holo Purple Stroke -->
     <stroke
-        android:width="3dp"
-        android:color="#33B5E5" /> <!-- Use the appropriate holo purple color code -->
+        android:width="2dp"
+        android:color="@color/lightgray" /> <!-- Use the appropriate holo purple color code -->
 
     <!-- Corner Border Radius -->
     <corners android:radius="8dp" />

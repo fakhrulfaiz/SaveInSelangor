@@ -88,7 +88,7 @@ public class AccountSettingsFragment extends Fragment {
         deactivateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Handle DEACTIVATE ACCOUNT button click
+                Navigation.findNavController(view).navigate(R.id.deactivateFragment);
             }
         });
 

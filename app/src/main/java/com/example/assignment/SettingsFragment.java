@@ -133,6 +133,13 @@ public class SettingsFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.feedbackFragment);
             }
         });
+        Button aboutButton = view.findViewById(R.id.aboutButton);
+        aboutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.aboutFragment);
+            }
+        });
 
 
     }
