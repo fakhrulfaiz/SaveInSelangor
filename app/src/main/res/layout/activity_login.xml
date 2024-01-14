@@ -9,6 +9,7 @@
     android:layout_gravity="center"
     >
 
+
     <RelativeLayout
         android:id="@+id/emergencyButtonsContainer"
         android:layout_width="wrap_content"
@@ -16,6 +17,8 @@
         tools:layout_editor_absoluteX="55dp"
         tools:layout_editor_absoluteY="56dp"
         android:layout_centerHorizontal="true">
+
+
 
         <ImageView
             android:id="@+id/callPolice"
