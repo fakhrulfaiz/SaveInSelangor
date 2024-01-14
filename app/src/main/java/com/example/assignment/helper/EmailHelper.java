@@ -5,10 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import kotlinx.coroutines.EventLoop_commonKt;
 
 public class EmailHelper {
 
@@ -21,12 +24,17 @@ public class EmailHelper {
         intent.putExtra(Intent.EXTRA_SUBJECT, subject);
         intent.putExtra(Intent.EXTRA_TEXT, body);
 
-        if (intent.resolveActivity(context.getPackageManager()) != null) {
+        try{
             context.startActivity(intent);
-        } else {
-            // Handle the case where no email app is available
-            Toast.makeText(context, "No email app installed", Toast.LENGTH_SHORT).show();
+        }catch(Exception e){
+            Log.d("EmailHelper", "sendEmail: " + e.getMessage());
         }
+//        if (intent.resolveActivity(context.getPackageManager()) != null) {
+//            context.startActivity(intent);
+//        } else {
+//            // Handle the case where no email app is available
+//            Toast.makeText(context, "No email app installed", Toast.LENGTH_SHORT).show();
+//        }
     }
 
 

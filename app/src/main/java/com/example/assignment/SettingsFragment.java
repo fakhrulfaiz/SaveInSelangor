@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
@@ -124,6 +125,19 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.flagContentFragment);
+            }
+        });
+        // Initialize the FEEDBACK button
+        Button feedbackButton = view.findViewById(R.id.feedbackButton);
+
+        // Set the OnClickListener
+        feedbackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to the FeedbackFragment
+
+
+
             }
         });
 

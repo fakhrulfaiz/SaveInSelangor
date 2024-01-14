@@ -12,6 +12,6 @@
         android:icon="@drawable/chat"/>
     <item
         android:id="@+id/DestSetting"
-        android:title="Setting"
+        android:title="Settings"
         android:icon="@drawable/settings_white"/>
 </menu>
