@@ -185,7 +185,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="0"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+            />
 
             <ImageView
                 android:id="@+id/ic_comment"
