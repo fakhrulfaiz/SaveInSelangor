@@ -1,6 +1,7 @@
 package com.example.assignment;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -181,22 +182,9 @@ public class FeedbackFragment extends Fragment {
 
     }
     private void highlightButton(Button button) {
-        // Reset all buttons to the default background
-//        buttonOverallService.setBackgroundColor(Color.TRANSPARENT);
-//        buttonTransparency.setBackgroundColor(Color.TRANSPARENT);
-//        buttonRepairQuality.setBackgroundColor(Color.TRANSPARENT);
-//        buttonCustomerSupport.setBackgroundColor(Color.TRANSPARENT);
 
-        // Get the current background color of the clicked button
-        int currentColor = ((ColorDrawable) button.getBackground()).getColor();
-
-        // Toggle between yellow and transparent
-        if (currentColor == Color.TRANSPARENT) {
-            button.setBackgroundColor(Color.YELLOW);
-        } else {
-            button.setBackgroundColor(Color.TRANSPARENT);
-        }
     }
+
 
     @Override
     public void onStart() {

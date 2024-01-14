@@ -513,7 +513,7 @@ public class AddPost extends Fragment {
                     postsMap.put("fullname", userFullname);
                     postsMap.put("subject", Subject);
                     DatabaseReference newPostRef = postRef.child(currentUserID + postRandomName);
-                    DatabaseReference newPostRef2 = postRef.child(currentUserID + postRandomName);
+                    DatabaseReference newPostRef2 = FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Posts").child(currentUserID + postRandomName);
 
                     postRef.child(currentUserID + postRandomName).updateChildren(postsMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
