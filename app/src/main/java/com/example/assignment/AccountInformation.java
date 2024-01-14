@@ -105,21 +105,15 @@ public class AccountInformation extends Fragment {
         }
         galleryLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        handleActivityResult(result, REQUEST_PICK_IMAGE);
-                        //    handleGalleryResult(result);
-                    }
+                result -> {
+                    handleActivityResult(result, REQUEST_PICK_IMAGE);
+                    //    handleGalleryResult(result);
                 });
         cameraLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        handleActivityResult(result, REQUEST_IMAGE_CAPTURE);
-                        //   handleGalleryResult(result);
-                    }
+                result -> {
+                    handleActivityResult(result, REQUEST_IMAGE_CAPTURE);
+                    //   handleGalleryResult(result);
                 });
 
     }
@@ -151,19 +145,9 @@ public class AccountInformation extends Fragment {
 
         loadUserData();
         Button changeImageButton = view.findViewById(R.id.changeImageButton);
-        changeImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openImageDialog();
-            }
-        });
+        changeImageButton.setOnClickListener(view12 -> openImageDialog());
         // Set onClickListener for the button
-        confirmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                handleConfirmButtonClick();
-            }
-        });
+        confirmButton.setOnClickListener(view1 -> handleConfirmButtonClick());
     }
     private void loadUserData() {
 
@@ -318,6 +302,8 @@ public class AccountInformation extends Fragment {
                                         newUserRef.child("profileimage").setValue(downloadURL).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
+                                                Picasso.get().load(downloadURL).placeholder(R.drawable.profile_img_loading)
+                                                        .memoryPolicy(MemoryPolicy.NO_CACHE).into(profileImageView);
                                                 Toast.makeText(getContext(), "Task Successful!", Toast.LENGTH_SHORT).show();
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {

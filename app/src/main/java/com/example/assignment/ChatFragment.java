@@ -276,7 +276,7 @@ boolean likeChecker = false;
                 "Hate - Slurs, Racist or sexist stereotype, Hateful reference, symbols or logos",
                 "Abuse & Harassment - Insult, Targeted Harassment",
                 "Violent Speech - Violent threat, Wish or Harm, Glorification of Violence",
-                "Privacy - Give some",
+                "Privacy - Sharing Private Information, sharing images of me that i don't  want on this platform",
                 "Spam - Financial scams, fake engagement, repetitive replies, posting malicious links"
         };
 
