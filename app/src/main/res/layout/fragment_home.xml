@@ -140,7 +140,7 @@
                 android:layout_width="318dp"
                 android:layout_height="155dp"
                 android:layout_below="@+id/textView"
-                android:layout_marginTop="-1dp"
+                android:layout_marginTop="7dp"
                 android:src="@drawable/blank_page"
                 android:clickable="true"
                 android:focusable="true"
