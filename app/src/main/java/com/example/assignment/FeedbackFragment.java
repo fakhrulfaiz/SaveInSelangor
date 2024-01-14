@@ -1,6 +1,8 @@
 package com.example.assignment;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -50,7 +52,7 @@ public class FeedbackFragment extends Fragment {
     private RatingBar rateBarFeedback;
     private TextView TVRating;
     private EditText ETFeedback;
-    private Button btnFeedback;
+    private Button btnFeedback, buttonOverallService, buttonTransparency, buttonRepairQuality, buttonCustomerSupport;
     private FirebaseAuth auth;
     private String currentUserID;
     private DatabaseReference feedbackRef;
@@ -153,23 +155,47 @@ public class FeedbackFragment extends Fragment {
             }
         });
 
-        Button buttonOverallService = view.findViewById(R.id.buttonOverallService);
-        Button buttonTransparency = view.findViewById(R.id.buttonTransparency);
-        Button buttonRepairQuality = view.findViewById(R.id.buttonRepairQuality);
-        Button buttonCustomerSupport = view.findViewById(R.id.buttonCustomerSupport);
-        buttonOverallService.setOnClickListener(v -> {
+         buttonOverallService = view.findViewById(R.id.buttonOverallService);
+         buttonTransparency = view.findViewById(R.id.buttonTransparency);
+         buttonRepairQuality = view.findViewById(R.id.buttonRepairQuality);
+         buttonCustomerSupport = view.findViewById(R.id.buttonCustomerSupport);
+        setupButtonListeners();
 
-        });
-        buttonTransparency.setOnClickListener(v -> {
+    }
+    private void setupButtonListeners() {
 
-        });
-        buttonRepairQuality.setOnClickListener(v -> {
 
-        });
-        buttonCustomerSupport.setOnClickListener(v -> {
+        // Handle the overall service button click
+        buttonOverallService.setOnClickListener(v -> highlightButton(buttonOverallService));
 
-        });
+        // Handle the transparency button click
+        buttonTransparency.setOnClickListener(v -> highlightButton(buttonTransparency));
 
+        // Handle the repair quality button click
+        buttonRepairQuality.setOnClickListener(v -> highlightButton(buttonRepairQuality));
+
+        // Handle the customer support button click
+        buttonCustomerSupport.setOnClickListener(v -> highlightButton(buttonCustomerSupport));
+
+
+
+    }
+    private void highlightButton(Button button) {
+        // Reset all buttons to the default background
+//        buttonOverallService.setBackgroundColor(Color.TRANSPARENT);
+//        buttonTransparency.setBackgroundColor(Color.TRANSPARENT);
+//        buttonRepairQuality.setBackgroundColor(Color.TRANSPARENT);
+//        buttonCustomerSupport.setBackgroundColor(Color.TRANSPARENT);
+
+        // Get the current background color of the clicked button
+        int currentColor = ((ColorDrawable) button.getBackground()).getColor();
+
+        // Toggle between yellow and transparent
+        if (currentColor == Color.TRANSPARENT) {
+            button.setBackgroundColor(Color.YELLOW);
+        } else {
+            button.setBackgroundColor(Color.TRANSPARENT);
+        }
     }
 
     @Override
