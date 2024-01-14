@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/fragment_about.xml -->
+<!-- res/layout/fragment_about.xml -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBD016"> <!-- Ensure you have a yellow color defined in your colors.xml -->
+
+    <TextView
+        android:id="@+id/textViewAboutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ABOUT"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/red_theme_color"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/textViewAboutTitle"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/about_background_shape">
+            <TextView
+                android:id="@+id/textViewAboutSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="8dp"
+                android:text="About SafeInSelangor"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/textViewAboutDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/about_description"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
+
+
+

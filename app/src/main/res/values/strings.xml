@@ -45,5 +45,16 @@ and feel safe </string>
     <string name="opengallery">openGallery</string>
     <string name="opencamera">openCamera</string>
     <string name="flag_content_long_text">Notice any misleading, false, or missing information?\n\n If you\'ve encountered inaccuracies or difficulties, we\'re here to help. Did you call the wrong number while trying to report to authorities?\n\n Please use the button below to drop us an email and report the issue. Your feedback is crucial in ensuring the accuracy of our information and improving the application for everyone. Thank you for helping us maintain a reliable and helpful service.</string>
+    <string name="about_description">
+    "Welcome to SafeInSelangor, the beacon of safety and community welfare in the heart of Malaysia. Our mission is to empower the citizens of Selangor through a dedicated platform that not only ensures safety but also upholds the pillars of justice and community well-being.
+
+    Our application is a testament to our commitment to the United Nations Sustainable Development Goals, aligning with SDG 16.1, to significantly reduce all forms of violence, and SDG 16.7, to ensure responsive, inclusive, participatory, and representative decision-making at all levels.
+
+    With SafeInSelangor, we provide a sanctuary of resources and tools designed to educate, alert, and protect our users. From real-time safety alerts to community support networks, we are at the forefront of combating violence and fostering a culture of peace and safety.
+
+    Our dedication goes beyond the app – we are committed to fostering a community where every voice is heard, every concern is addressed, and every resident is an active participant in shaping a safer Selangor. We stand for a future where technology is a force for good, where data and connectivity pave the way for enlightened decision-making and where the well-being of our community is the cornerstone of progress.
+
+    Join us on this journey. Together, we can achieve the vision of SDG 16 – to promote peaceful and inclusive societies for sustainable development, provide access to justice for all, and build effective, accountable institutions at all levels."
+</string>
 
 </resources>
