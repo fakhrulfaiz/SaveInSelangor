@@ -30,8 +30,8 @@ public class NewsApiHelper {
 
     private static final String API_KEY = "10ec41c9d413455bb706aaa6b7dbea86";
   //  private static final String API_URL = "https://newsapi.org/v2/everything?q=crime%20Selangor&apiKey=" + API_KEY;
-    private static final String API_URL = "https://newsdata.io/api/1/news?apikey=pub_343476faae00b4f4b8c1a6918aaca961ef6de&q=selangor";
-
+   // private static final String API_URL = "https://newsdata.io/api/1/news?apikey=pub_343476faae00b4f4b8c1a6918aaca961ef6de&q=selangor";
+    private static final String API_URL = "https://newsdata.io/api/1/news?apikey=pub_36424124931a50569807e5a52596800c98bb6&q=selangor" ;
     String imgaeUrl;
 
     public List<NewsItem> fetchData() {
