@@ -8,16 +8,19 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.SearchView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,6 +42,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.transition.platform.MaterialFade;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -56,6 +60,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
@@ -74,6 +79,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     Intent intent;
     private int radius = 10 * 1000;
     private DatabaseReference postRef;
+    private boolean isExpanded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,7 +195,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-        FloatingActionButton hospBtn = findViewById(R.id.hospitalButton);
+        FloatingActionButton showAllBtn = findViewById(R.id.showAllBtn);
 
 
         ImageButton backButton = findViewById(R.id.backButton);
@@ -199,10 +205,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 finish();
 
         });
-
-
-
-        hospBtn.setOnClickListener(new View.OnClickListener() {
+        showAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Clear existing markers
@@ -265,7 +268,36 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 });
             }
         });
-       
+        FloatingActionButton arrowDownButton = findViewById(R.id.arrowDownButton);
+        FloatingActionButton hospitalButton = findViewById(R.id.hospitalButton);
+        FloatingActionButton policeButton = findViewById(R.id.policeButton);
+        FloatingActionButton fireStationButton = findViewById(R.id.fireStationButton);
+        LinearLayout linearLayout = findViewById(R.id.expandedButtonsContainer);
+        arrowDownButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (linearLayout.getVisibility() == View.GONE) {
+                    arrowDownButton.setImageResource(R.drawable.ic_up_arrow);
+                    TransitionManager.beginDelayedTransition(linearLayout, new MaterialFade());
+                    linearLayout.setVisibility(View.VISIBLE);
+                } else {
+                    arrowDownButton.setImageResource(R.drawable.ic_down_arrow);
+                    TransitionManager.beginDelayedTransition(linearLayout, new MaterialFade());
+                    linearLayout.setVisibility(View.GONE);
+                }
+                isExpanded = !isExpanded;
+            }
+        });
+        hospitalButton.setOnClickListener(v -> {
+            getNearbyPlace("hospital");
+        });
+        policeButton.setOnClickListener(v -> {
+            getNearbyPlace("police%20station");
+
+        });
+        fireStationButton.setOnClickListener(v -> {
+            getNearbyPlace("fire%20station");
+        });
         assert mapFragment != null;
         mapFragment.getMapAsync(this);
     }
@@ -488,32 +520,48 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             return mapList;
         }, executor).thenAcceptAsync(hashMaps -> {
-//            double lat3 = Double.parseDouble(Objects.requireNonNull(hashMaps.get(0).get("lat")));
-//            double lng3 = Double.parseDouble(Objects.requireNonNull(hashMaps.get(0).get("lng")));
-//            String name3 = hashMaps.get(0).get("name");
-//            Log.d(TAG, "lat3 : " + lat3);
-//            Log.d(TAG, "lng3 : " + lng3);
-//            Log.d(TAG, "name3 : " + name3);
 
             runOnUiThread(() -> {
+                mMap.clear();
+                double shortestDistance = Double.MAX_VALUE;
+                LatLng closestLocation = null;
 
-            mMap.clear();
-            for (int i = 0; i < hashMaps.size(); i++) {
-                HashMap<String, String> hashMapList = hashMaps.get(i);
-                double lat = Double.parseDouble(Objects.requireNonNull(hashMapList.get("lat")));
-                double lng = Double.parseDouble(Objects.requireNonNull(hashMapList.get("lng")));
-                String name = hashMapList.get("name");
-                LatLng latLng = new LatLng(lat, lng);
-                if (i == 0) {
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12 ));
+                for (int i = 0; i < hashMaps.size(); i++) {
+                    HashMap<String, String> hashMapList = hashMaps.get(i);
+                    double lat = Double.parseDouble(Objects.requireNonNull(hashMapList.get("lat")));
+                    double lng = Double.parseDouble(Objects.requireNonNull(hashMapList.get("lng")));
+                    String name = hashMapList.get("name");
+                    LatLng latLng = new LatLng(lat, lng);
+
+                    // Calculate distance between current location and this marker
+                    Location currentLocation = new Location("current");
+                    currentLocation.setLatitude(currentLat);
+                    currentLocation.setLongitude(currentLng);
+
+                    Location markerLocation = new Location("marker");
+                    markerLocation.setLatitude(lat);
+                    markerLocation.setLongitude(lng);
+
+                    double distance = currentLocation.distanceTo(markerLocation);
+
+                    if (distance < shortestDistance) {
+                        shortestDistance = distance;
+                        closestLocation = latLng;
+                    }
+
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(name).snippet(
+                            String.format(Locale.getDefault(), "Lat: %f\nLng: %f\nDistance: %.2f km", lat, lng, distance/1000)
+                    ));
                 }
-                mMap.addMarker(new MarkerOptions().position(latLng).title(name).snippet(
-                        "Lat :" + lat + "\nLng :" + lng
-                ));
-            }
+
+                if (closestLocation != null) {
+                    // Move the camera to the closest location
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(closestLocation, 12));
+                }
             });
         });
     }
+
 
 
 

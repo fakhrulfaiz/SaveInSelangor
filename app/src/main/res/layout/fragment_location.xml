@@ -58,7 +58,7 @@
             android:layout_weight="1"
             android:src="@drawable/nearby_fire"
             android:clickable="true"
-            android:onClick="onFireClick"
+
             android:contentDescription="fire%20station"
             android:layout_margin="5dp"
             android:focusable="true" />
@@ -71,7 +71,6 @@
             android:layout_weight="1"
             android:src="@drawable/nearby_police"
             android:clickable="true"
-            android:onClick="onPoliceClick"
             android:contentDescription="police%20station"
             android:layout_margin="5dp"
             android:focusable="true" />
@@ -83,7 +82,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:clickable="true"
-            android:onClick="onHospitalClick"
             android:src="@drawable/nearby_hospital"
             android:layout_margin="5dp"
             android:contentDescription="hospital"
