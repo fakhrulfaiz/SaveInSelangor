@@ -99,7 +99,7 @@ public class ReportsFragment extends Fragment {
 //        cardViewDataList.add(new CardViewData(getResources().getString(R.string.recyclerView), getResources().getString(R.string.recyclerViewdetails)));
 
 //        CustomAdapter adapter = new CustomAdapter(this, R.layout.list_cardview, 3); // Display 3 items
-        CustomAdapter<CardViewData> adapter = new CustomAdapter(requireContext(), cardViewDataList);
+        CustomAdapter<CardViewData> adapter = new CustomAdapter<>(requireContext(), cardViewDataList);
         listView.setAdapter(adapter);
 
 

@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.assignment.data.LocationData;
 import com.example.assignment.data.Posts;
@@ -30,6 +31,7 @@ import com.example.assignment.helper.RoundedTransformation;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,6 +41,9 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -58,7 +63,7 @@ public class ChatFragment extends Fragment {
     private RecyclerView postList;
 boolean likeChecker = false;
 
-    DatabaseReference likesRef;
+    DatabaseReference likesRef, reportPostRef;
     private String currID;
 
     public ChatFragment() {
@@ -92,6 +97,10 @@ boolean likeChecker = false;
         likesRef = FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/")
                 .getReference()
                 .child("Likes");
+
+        reportPostRef = FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference()
+                .child("ReportPost");
 
     }
 
@@ -172,15 +181,10 @@ boolean likeChecker = false;
                         holder.reportPostBtn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                showReportOptionsPopup(holder.reportPostBtn);
+                                showReportOptionsPopup(postKey, holder.reportPostBtn);
                             }
                         });
-                        holder.reportPostBtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                showReportOptionsPopup(holder.reportPostBtn);
-                            }
-                        });
+
                         postRef.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -239,7 +243,7 @@ boolean likeChecker = false;
 
     }
 
-    private void showReportOptionsPopup(View view) {
+    private void showReportOptionsPopup(String postKey, View view) {
         PopupMenu popupMenu = new PopupMenu(getContext(), view);
         MenuInflater inflater = popupMenu.getMenuInflater();
         inflater.inflate(R.menu.report_menu, popupMenu.getMenu());
@@ -253,7 +257,7 @@ boolean likeChecker = false;
             public boolean onMenuItemClick(MenuItem item) {
                 // Handle the selected report option
                 String reportOption = item.getTitle().toString();
-                showReportTypeDialog(reportOption);
+                showReportTypeDialog(postKey);
                 return true;
             }
         });
@@ -262,7 +266,7 @@ boolean likeChecker = false;
         popupMenu.show();
     }
 
-    private void showReportTypeDialog(String reportReason) {
+    private void showReportTypeDialog(String postKey) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("What type of issue are you reporting?");
 
@@ -292,7 +296,7 @@ boolean likeChecker = false;
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Handle the "Next" button click
-                showConfirmationDialog(reportReason, items, checkedItems);
+                showConfirmationDialog(postKey, items, checkedItems);
                 dialog.dismiss();
             }
         });
@@ -310,7 +314,7 @@ boolean likeChecker = false;
         dialog.show();
     }
 
-    private void showConfirmationDialog(String reportReason, CharSequence[] reportTypes, boolean[] checkedItems) {
+    private void showConfirmationDialog(String postKey, CharSequence[] reportTypes, boolean[] checkedItems) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Report Post");
 
@@ -329,8 +333,25 @@ boolean likeChecker = false;
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                // Handle the report action
-                // You can perform further actions or make a network request here
+                Calendar calForDate = Calendar.getInstance();
+                SimpleDateFormat currDate = new SimpleDateFormat("dd-MMMM-yyyy");
+                String CurrDate = currDate.format(calForDate.getTime());
+
+                Calendar calForTime = Calendar.getInstance();
+                SimpleDateFormat currTime = new SimpleDateFormat("HH:mm");
+                String CurrTime = currTime.format(calForTime.getTime());
+                HashMap<String, Object> RPMap = new HashMap<>();
+
+                RPMap.put("report", selectedTypes.toString());
+                RPMap.put("time",CurrTime );
+                RPMap.put("date",CurrDate );
+                reportPostRef.child(postKey).child(currID).setValue(RPMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(getContext(), "Thank you for your report", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
 
@@ -338,7 +359,6 @@ boolean likeChecker = false;
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                // Cancel the report action
             }
         });
 

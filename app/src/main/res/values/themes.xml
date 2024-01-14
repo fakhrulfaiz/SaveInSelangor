@@ -5,7 +5,9 @@
         <!--  <item name="colorPrimary">@color/colorPrimary</item> -->
     </style>
 
-    <style name="Theme.Assignment" parent="Base.Theme.Assignment" />
+    <style name="Theme.Assignment" parent="Base.Theme.Assignment">
+
+    </style>
 
     <style name="RedButtonStyle" parent="Widget.AppCompat.Button">
         <item name="android:background">@drawable/red_button_background</item>

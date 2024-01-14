@@ -5,12 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ChatFragment"
-    android:id="@+id/main_container">
+    android:id="@+id/main_container"
+    android:background="@drawable/gradient_background4"
+
+    >
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/users_post_list"/>
+        android:id="@+id/users_post_list"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="10dp"/>
 
     <Button
         android:id="@+id/addPost"

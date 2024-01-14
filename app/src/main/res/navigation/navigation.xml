@@ -110,4 +110,9 @@
         android:id="@+id/flagContentFragment"
         android:name="com.example.assignment.FlagContentFragment"
         android:label="FlagContentFragment" />
+    <fragment
+        android:id="@+id/feedbackFragment"
+        android:name="com.example.assignment.FeedbackFragment"
+        android:label="fragment_feedback"
+        tools:layout="@layout/fragment_feedback" />
 </navigation>
