@@ -115,4 +115,12 @@
         android:name="com.example.assignment.FeedbackFragment"
         android:label="fragment_feedback"
         tools:layout="@layout/fragment_feedback" />
+    <fragment
+        android:id="@+id/deactivateFragment"
+        android:name="com.example.assignment.DeactivateFragment"
+        android:label="DeactivateFragment" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.assignment.AboutFragment"
+        android:label="AboutFragment" />
 </navigation>
