@@ -10,7 +10,7 @@
     <fragment
         android:id="@+id/DestHome"
         android:name="com.example.assignment.HomeFragment"
-        android:label="fragment_home"
+        android:label="Home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/NextToReport"
@@ -40,7 +40,7 @@
     <fragment
         android:id="@+id/addPostFragment"
         android:name="com.example.assignment.AddPost"
-        android:label=""
+        android:label="Create Post"
         tools:layout="@layout/fragment_add_post" />
     <fragment
         android:id="@+id/guidesFragment"
@@ -95,12 +95,12 @@
     <fragment
         android:id="@+id/commentFragment"
         android:name="com.example.assignment.CommentFragment"
-        android:label="fragment_comment"
+        android:label="Comment"
         tools:layout="@layout/fragment_comment" />
     <fragment
         android:id="@+id/announcementFragment"
         android:name="com.example.assignment.AnnouncementFragment"
-        android:label="fragment_announcement"
+        android:label="Announcement"
         tools:layout="@layout/fragment_announcement" />
     <fragment
         android:id="@+id/NAViewPageFragment"
@@ -109,11 +109,11 @@
     <fragment
         android:id="@+id/flagContentFragment"
         android:name="com.example.assignment.FlagContentFragment"
-        android:label="FlagContentFragment" />
+        android:label="FlagContent" />
     <fragment
         android:id="@+id/feedbackFragment"
         android:name="com.example.assignment.FeedbackFragment"
-        android:label="fragment_feedback"
+        android:label="Feedback"
         tools:layout="@layout/fragment_feedback" />
     <fragment
         android:id="@+id/deactivateFragment"
