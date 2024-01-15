@@ -194,11 +194,11 @@ public class LoginActivity extends AppCompatActivity {
         int buttonId = view.getId();
 
         if (buttonId == R.id.callPolice) {
-            CallHelper.callService(LoginActivity.this, "0182874046");
+            CallHelper.callService(LoginActivity.this, "999");
         } else if (buttonId == R.id.callAmbulance) {
-            CallHelper.callService(LoginActivity.this, "0182874046");
+            CallHelper.callService(LoginActivity.this, "999");
         } else if (buttonId == R.id.callBomba) {
-            CallHelper.callService(LoginActivity.this, "0182874046");
+            CallHelper.callService(LoginActivity.this, "994");
         }
 
     }

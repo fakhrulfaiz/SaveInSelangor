@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ChatFragment"
     android:id="@+id/main_container"
-    android:background="@drawable/gradient_background4"
+    android:background="@color/lightgray"
 
     >
 

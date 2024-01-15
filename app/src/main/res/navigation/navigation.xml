@@ -109,7 +109,7 @@
     <fragment
         android:id="@+id/flagContentFragment"
         android:name="com.example.assignment.FlagContentFragment"
-        android:label="FlagContent" />
+        android:label="Flag Content" />
     <fragment
         android:id="@+id/feedbackFragment"
         android:name="com.example.assignment.FeedbackFragment"
@@ -118,9 +118,9 @@
     <fragment
         android:id="@+id/deactivateFragment"
         android:name="com.example.assignment.DeactivateFragment"
-        android:label="DeactivateFragment" />
+        android:label="Deactivate Account" />
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.example.assignment.AboutFragment"
-        android:label="AboutFragment" />
+        android:label="About" />
 </navigation>

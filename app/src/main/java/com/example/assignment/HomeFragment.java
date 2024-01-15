@@ -278,11 +278,11 @@ public class HomeFragment extends Fragment {
         int buttonId = view.getId();
 
         if (buttonId == R.id.callPolice) {
-            CallHelper.callService(getContext(), "0182874046");
+            CallHelper.callService(getContext(), "999");
         } else if (buttonId == R.id.callAmbulance) {
-            CallHelper.callService(getContext(), "0182874046");
+            CallHelper.callService(getContext(), "999");
         } else if (buttonId == R.id.callBomba) {
-            CallHelper.callService(getContext(), "0182874046");
+            CallHelper.callService(getContext(), "994");
         }
 
     }

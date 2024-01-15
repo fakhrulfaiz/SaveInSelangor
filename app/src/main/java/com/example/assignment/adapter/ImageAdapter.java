@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.assignment.helper.RoundedTransformation;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class ImageAdapter extends ArrayAdapter<Uri> {
@@ -35,9 +38,14 @@ public class ImageAdapter extends ArrayAdapter<Uri> {
             imageView = (ImageView) convertView;
         }
 
-        // Load and set the image from the URI
+        // Load and set the image from the URI using Picasso
         Uri imageUri = getItem(position);
-        imageView.setImageURI(imageUri);
+        if (imageUri != null) {
+            Picasso.get()
+                    .load(imageUri)
+                    .fit().transform(new RoundedTransformation(30, 0))
+                    .into(imageView);
+        }
 
         return imageView;
     }

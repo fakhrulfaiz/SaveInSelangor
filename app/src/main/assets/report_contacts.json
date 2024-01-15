@@ -2,20 +2,20 @@
   "reportsContacts": [
     {
       "category": "Report crime",
-      "organization": "Malaysian Anti-Corruption Commission (SPRM)",
-      "phone": "+61800886000",
-      "email": "allcppm@sprm.gov.my"
+      "organization": "Royal Malaysia Police (PDRM)",
+      "phone": "999",
+      "email": ""
     },
     {
       "category": "Report corruption",
       "organization": "Malaysian Anti-Corruption Commission (SPRM)",
-      "phone": "+61800886000",
+      "phone": "1800886000",
       "email": "info@sprm.gov.my"
     },
     {
       "category": "Report fake news",
       "organization": "Malaysia Communication & Multimedia Commission (SKMM)",
-      "phone": "+61800188030",
+      "phone": "1800188030",
       "email": "aduanskmm@cmc.gov.my"
     },
     {
@@ -51,7 +51,7 @@
     {
       "category": "Report commercial crimes",
       "organization": "Royal Malaysia Police (PDRM)",
-      "phone": "+60322662222 or 03-26101222",
+      "phone": "+60322662222",
       "email": "rmp@rmp.gov.my"
     },
     {
