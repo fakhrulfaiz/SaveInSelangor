@@ -118,17 +118,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 radius = progress * 1000;  // Convert progress to meters, adjust as needed
 
                 // Perform a new search or update the existing markers based on the new radius
-
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 
@@ -168,8 +165,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                     Executor executor = Executors.newSingleThreadExecutor();
 
-
-
                     CompletableFuture.supplyAsync(() -> {
                         try {
 
@@ -183,7 +178,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                     });
 
-
                 }
 
                 return false;
@@ -196,7 +190,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
 
         FloatingActionButton showAllBtn = findViewById(R.id.showAllBtn);
-
 
         ImageButton backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> {

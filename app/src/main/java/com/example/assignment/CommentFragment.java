@@ -43,24 +43,23 @@ import java.util.HashMap;
  */
 public class CommentFragment extends Fragment {
 
-
-private ImageButton postCommentBtn;
-private EditText commentInput;
-private RecyclerView commentList;
-private DatabaseReference userRef;
+    private ImageButton postCommentBtn;
+    private EditText commentInput;
+    private RecyclerView commentList;
+    private DatabaseReference userRef;
     final private String ARG_POST_KEY = "postKey";
     private String postKey, currentUserID;
-private FirebaseAuth auth;
+    private FirebaseAuth auth;
     private DatabaseReference postRef;
 
 
     public CommentFragment() {
-        // Required empty public constructor
+        //  Required empty public constructor
     }
 
     public CommentFragment newInstance(String param1, String param2) {
         CommentFragment fragment = new CommentFragment();
-        Bundle args = new Bundle();
+        Bundle args =  new Bundle();
         args.putString(ARG_POST_KEY, postKey);
         fragment.setArguments(args);
         return fragment;
@@ -70,10 +69,10 @@ private FirebaseAuth auth;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            postKey = getArguments().getString(ARG_POST_KEY);
+            postKey =  getArguments().getString(ARG_POST_KEY);
         }
         userRef = FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Users");
-        postRef = FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Posts").child(postKey).child("comments");
+        postRef =  FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Posts").child(postKey).child("comments");
         auth = FirebaseAuth.getInstance();
         currentUserID = auth.getCurrentUser().getUid();
     }
@@ -89,7 +88,7 @@ private FirebaseAuth auth;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        commentList = (RecyclerView) view.findViewById(R.id.recyclerViewComments);
+        commentList  = (RecyclerView) view.findViewById(R.id.recyclerViewComments);
         commentList.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setReverseLayout(true);
@@ -99,14 +98,14 @@ private FirebaseAuth auth;
         commentInput = (EditText) view.findViewById(R.id.editTextComment);
         postCommentBtn = (ImageButton) view.findViewById(R.id.postCommentBtn);
 
-        postCommentBtn.setOnClickListener(new View.OnClickListener() {
+        postCommentBtn.setOnClickListener(new  View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 userRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){
-                            String username = snapshot.child("username").getValue().toString();
+                            String  username = snapshot.child("username").getValue().toString();
 
                             validateComment(username);
 
@@ -117,7 +116,7 @@ private FirebaseAuth auth;
 
 
                     @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                    public void onCancelled(@NonNull  DatabaseError error) {
 
                     }
                 });
@@ -139,7 +138,7 @@ private FirebaseAuth auth;
                         .setQuery(query, Comments.class)
                         .build();
         FirebaseRecyclerAdapter<Comments, CommentsViewHolder> firebaseRecyclerAdapter
-                = new FirebaseRecyclerAdapter<Comments, CommentsViewHolder>(options) {
+                = new FirebaseRecyclerAdapter<Comments, CommentsViewHolder>(options)  {
             @Override
             protected void onBindViewHolder(@NonNull CommentsViewHolder holder, int position, @NonNull Comments model) {
 

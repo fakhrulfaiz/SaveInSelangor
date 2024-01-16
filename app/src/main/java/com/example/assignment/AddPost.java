@@ -131,6 +131,8 @@ public class AddPost extends Fragment {
      * @return A new instance of fragment AddPost.
      */
     // TODO: Rename and change types and number of parameters
+
+
     public static AddPost newInstance(String param1, String param2) {
         AddPost fragment = new AddPost();
         Bundle args = new Bundle();
@@ -139,6 +141,7 @@ public class AddPost extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -177,6 +180,7 @@ public class AddPost extends Fragment {
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -207,7 +211,6 @@ public class AddPost extends Fragment {
                 openImageDialog()
         );
 
-
         ImageButton buttonAttachLocation = view.findViewById(R.id.buttonAttachLocation);
         buttonAttachLocation.setOnClickListener(view12 -> showLocationDialog());
 
@@ -223,6 +226,7 @@ public class AddPost extends Fragment {
 
         return view;
     }
+
 
     private void showLocationDialog() {
         String[] options = {"My Location", "Search Location"};
@@ -243,6 +247,8 @@ public class AddPost extends Fragment {
 
         builder.create().show();
     }
+
+
     private void openImageDialog() {
         AddImageDialog customDialog = new AddImageDialog(requireContext());
 
@@ -279,6 +285,7 @@ public class AddPost extends Fragment {
         startActivityForResult(intent, REQUEST_CODE_LOCATION_SEARCH);
     }
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -314,7 +321,7 @@ public class AddPost extends Fragment {
         if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-            // Request location updates
+            // Request location Updates
             fusedLocationProviderClient.getLastLocation().addOnSuccessListener(activity, new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
@@ -333,8 +340,9 @@ public class AddPost extends Fragment {
         }
     }
 
+
     private void findPlace(double lat, double lng, OnPlaceFoundListener listener) {
-        // Your existing findPlace method...
+        // Your existing findPlace method
         if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
@@ -397,10 +405,13 @@ public class AddPost extends Fragment {
             });
 
     }
+
+
     private void openGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         galleryLauncher.launch(intent);
     }
+
 
     private void openCamera() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -410,6 +421,8 @@ public class AddPost extends Fragment {
             cameraLauncher.launch(takePictureIntent);
         }
     }
+
+
     private void handleActivityResult(ActivityResult result, int requestCode) {
         if (result.getResultCode() == Activity.RESULT_OK) {
             Intent data = result.getData();
@@ -438,6 +451,7 @@ public class AddPost extends Fragment {
             }
         }
     }
+
 
     private void saveImageToFirebaseStorage(){
 
@@ -483,6 +497,7 @@ public class AddPost extends Fragment {
 
     }
 
+
     private void savePostInformationToDatabase() {
 
         usersRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
@@ -515,7 +530,7 @@ public class AddPost extends Fragment {
                     DatabaseReference newPostRef = postRef.child(currentUserID + postRandomName);
                     DatabaseReference newPostRef2 = FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Posts").child(currentUserID + postRandomName);
 
-                    postRef.child(currentUserID + postRandomName).updateChildren(postsMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    postRef.child(currentUserID +  postRandomName).updateChildren(postsMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){

@@ -50,23 +50,22 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ChatFragment#newInstance} factory method to
+ * Use the {@link ForumFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ChatFragment extends Fragment {
+public class ForumFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
     private RecyclerView postList;
-boolean likeChecker = false;
+    boolean likeChecker = false;
 
     DatabaseReference likesRef, reportPostRef;
     private String currID;
 
-    public ChatFragment() {
+    public ForumFragment() {
         // Required empty public constructor
     }
 
@@ -79,8 +78,10 @@ boolean likeChecker = false;
      * @return A new instance of fragment ChatFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ChatFragment newInstance(String param1, String param2) {
-        ChatFragment fragment = new ChatFragment();
+
+
+    public static ForumFragment newInstance(String param1, String param2) {
+        ForumFragment fragment = new ForumFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -291,7 +292,7 @@ boolean likeChecker = false;
             }
         });
 
-        // Add "Next" button
+        // "Next" button
         builder.setPositiveButton("Next", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -301,7 +302,7 @@ boolean likeChecker = false;
             }
         });
 
-        // Add "Cancel" button
+        // "Cancel" button
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -366,8 +367,6 @@ boolean likeChecker = false;
     }
 
 
-
-
     public static class PostsViewHolder extends RecyclerView.ViewHolder
     {
         View mView;
@@ -398,6 +397,8 @@ boolean likeChecker = false;
 
 
         }
+
+
         public void setCommentCount(final String postKey){
             postRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -415,6 +416,8 @@ boolean likeChecker = false;
             });
 
         }
+
+
         public void setLikeButtonStatus(final String postKey){
             likesRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -436,6 +439,8 @@ boolean likeChecker = false;
                 }
             });
         }
+
+
         public void setSubject(String subject)
         {
             Log.d("ChatFragment", "setSubject: " + subject);
@@ -463,6 +468,7 @@ boolean likeChecker = false;
 
         }
 
+
         public void setTime(String time)
         {
             TextView PostTime = mView.findViewById(R.id.post_time);
@@ -481,6 +487,7 @@ boolean likeChecker = false;
             PostDescription.setText(description);
         }
 
+
         public void setPostimage(String postimage) {
             ImageView PostImage = mView.findViewById(R.id.post_image);
 
@@ -495,6 +502,7 @@ boolean likeChecker = false;
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -502,13 +510,13 @@ boolean likeChecker = false;
         return inflater.inflate(R.layout.fragment_chat, container, false);
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         Button addPost = view.findViewById(R.id.addPost);
         addPost.setOnClickListener(v -> Navigation.findNavController(view).navigate(R.id.addPostFragment));
-
 
         postList = view.findViewById(R.id.users_post_list);
         postList.setHasFixedSize(true);

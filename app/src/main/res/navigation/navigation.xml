@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/DestChat"
-        android:name="com.example.assignment.ChatFragment"
+        android:name="com.example.assignment.ForumFragment"
         android:label="Chat"
         tools:layout="@layout/fragment_chat" />
 

@@ -28,20 +28,17 @@ public class ClickPostFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-
     private String mParam1;
     private String mParam2;
-String postKey;
+    String postKey;
     private ImageView clickPostImage;
     private TextView clickPostDescription;
-final private String ARG_POST_KEY = "postKey";
+    final private String ARG_POST_KEY = "postKey";
     private DatabaseReference databaseReference;
 
     public ClickPostFragment() {
         // Required empty public constructor
     }
-
 
 
     public ClickPostFragment newInstance(String postKey) {
@@ -52,6 +49,7 @@ final private String ARG_POST_KEY = "postKey";
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,13 +59,14 @@ final private String ARG_POST_KEY = "postKey";
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_click_post, container, false);
 
-        // Find views by ID
+        // Find views by using ID
         clickPostImage = view.findViewById(R.id.clickPostImage);
         clickPostDescription = view.findViewById(R.id.clickPostDesciption);
         databaseReference = FirebaseDatabase.getInstance("https://assignment-1c692-default-rtdb.asia-southeast1.firebasedatabase.app/")
@@ -98,7 +97,7 @@ final private String ARG_POST_KEY = "postKey";
 
             }
         });
-        // Now you can use clickPostImage and clickPostDescription as needed
+        //Now you can use clickPostImage and clickPostDescription as needed
 
         return view;
     }

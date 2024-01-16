@@ -17,7 +17,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -32,11 +31,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.assignment.data.GuideData;
 import com.example.assignment.databinding.ActivityMainBinding;
 import com.example.assignment.helper.CheckMapHelper;
 import com.google.android.gms.common.ConnectionResult;
@@ -201,7 +198,7 @@ private boolean mLocationPermissionGranted = false;
                     if (selected == R.id.DestHome) {
                         replaceFragment(new HomeFragment());
                     } else if (selected == R.id.DestHome) {
-                        replaceFragment(new ChatFragment());
+                        replaceFragment(new ForumFragment());
                     } else if (selected == R.id.DestSetting) {
                         replaceFragment(new SettingsFragment());
                     }
