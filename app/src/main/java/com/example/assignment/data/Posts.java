@@ -20,7 +20,6 @@ public class Posts
         this.profileimage = profileimage;
         this.fullname = fullname;
         this.subject = subject;
-
     }
 
     public String getSubject() {
@@ -73,7 +72,6 @@ public class Posts
     }
 
     public String getProfileimage() {
-
         return profileimage;
     }
 

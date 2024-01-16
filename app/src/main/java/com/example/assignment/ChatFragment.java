@@ -50,10 +50,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ForumFragment#newInstance} factory method to
+ * Use the {@link ChatFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ForumFragment extends Fragment {
+public class ChatFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,7 +65,7 @@ public class ForumFragment extends Fragment {
     DatabaseReference likesRef, reportPostRef;
     private String currID;
 
-    public ForumFragment() {
+    public ChatFragment() {
         // Required empty public constructor
     }
 
@@ -80,8 +80,8 @@ public class ForumFragment extends Fragment {
     // TODO: Rename and change types and number of parameters
 
 
-    public static ForumFragment newInstance(String param1, String param2) {
-        ForumFragment fragment = new ForumFragment();
+    public static ChatFragment newInstance(String param1, String param2) {
+        ChatFragment fragment = new ChatFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

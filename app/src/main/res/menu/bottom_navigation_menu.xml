@@ -8,7 +8,7 @@
         />
     <item
         android:id="@+id/DestChat"
-        android:title="Chat"
+        android:title="Forum"
         android:icon="@drawable/chat"/>
     <item
         android:id="@+id/DestSetting"

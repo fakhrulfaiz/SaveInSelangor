@@ -198,7 +198,7 @@ private boolean mLocationPermissionGranted = false;
                     if (selected == R.id.DestHome) {
                         replaceFragment(new HomeFragment());
                     } else if (selected == R.id.DestHome) {
-                        replaceFragment(new ForumFragment());
+                        replaceFragment(new ChatFragment());
                     } else if (selected == R.id.DestSetting) {
                         replaceFragment(new SettingsFragment());
                     }
