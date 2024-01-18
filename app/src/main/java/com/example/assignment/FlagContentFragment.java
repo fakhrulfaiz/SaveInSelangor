@@ -47,7 +47,7 @@ public class FlagContentFragment extends Fragment {
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+         fragment.setArguments(args);
         return fragment;
     }
 
