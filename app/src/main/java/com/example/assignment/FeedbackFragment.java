@@ -229,6 +229,6 @@ public class FeedbackFragment extends Fragment {
         Context context = getContext();
 
         // Create and display the toast
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 }
