@@ -1,12 +1,10 @@
 package com.example.assignment;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +41,7 @@ public class ReportsFragment extends Fragment {
     private String mParam2;
 
     public ReportsFragment() {
+      
         // Required empty public constructor
     }
 
@@ -97,7 +96,6 @@ public class ReportsFragment extends Fragment {
 //        cardViewDataList.add(new CardViewData(getResources().getString(R.string.cardView), getResources().getString(R.string.cardViewdetails)));
 //        cardViewDataList.add(new CardViewData(getResources().getString(R.string.textView), getResources().getString(R.string.textViewdetails)));
 //        cardViewDataList.add(new CardViewData(getResources().getString(R.string.recyclerView), getResources().getString(R.string.recyclerViewdetails)));
-
 //        CustomAdapter adapter = new CustomAdapter(this, R.layout.list_cardview, 3); // Display 3 items
         CustomAdapter<CardViewData> adapter = new CustomAdapter<>(requireContext(), cardViewDataList);
         listView.setAdapter(adapter);
