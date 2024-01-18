@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link DeactivateFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * create an instance of this fragment to delete account from firebase
  */
 public class DeactivateFragment extends Fragment {
 

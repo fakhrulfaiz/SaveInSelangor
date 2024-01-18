@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Login page (Amro) -->
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +16,6 @@
         android:layout_gravity="center"
         android:elevation="10dp"
         app:cardCornerRadius="20dp">
-
 
         <LinearLayout
             android:layout_width="362dp"
@@ -188,7 +188,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:text="@string/action_sign_up_short" />
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

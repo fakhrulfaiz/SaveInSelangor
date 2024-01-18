@@ -48,6 +48,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         register.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
 
@@ -71,8 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerUser(String emailText, String passwordText) {
-
-
+        // firebase implementation
         auth.createUserWithEmailAndPassword(emailText,passwordText).addOnCompleteListener(RegisterActivity.this,new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {

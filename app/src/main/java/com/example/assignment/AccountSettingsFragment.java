@@ -9,8 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AccountSettingsFragment#newInstance} factory method to
@@ -62,14 +60,13 @@ public class AccountSettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_account_settings, container, false);
 
         Button accountInformationBtn = view.findViewById(R.id.accountInformationBtn);
         Button changePassBtn = view.findViewById(R.id.changePassBtn);
         Button deactivateBtn = view.findViewById(R.id.deactivateBtn);
 
-        // Set onClickListener for buttons
+        // Set onClickListener for buttons to work
         accountInformationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

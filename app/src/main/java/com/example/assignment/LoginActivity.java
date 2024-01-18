@@ -37,6 +37,7 @@ import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
+
     private EditText email,password;
     private Button login;
     private FirebaseAuth auth;
@@ -55,6 +56,8 @@ public class LoginActivity extends AppCompatActivity {
         ImageView callAmbulance = findViewById(R.id.callAmbulance);
         ImageView callBomba = findViewById(R.id.callBomba);
         auth = FirebaseAuth.getInstance();
+
+        //TODO: View Onclicklistener is never used (needs to be removed)
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
@@ -139,8 +142,6 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }else{
 
-//            startActivity(new Intent(LoginActivity.this, LoginOffline.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
-//            finish();
         }
     }
 

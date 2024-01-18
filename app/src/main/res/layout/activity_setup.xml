@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Setup account page (Amro) -->
+
 <RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="match_parent"

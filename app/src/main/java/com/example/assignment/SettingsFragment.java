@@ -180,7 +180,7 @@ public class SettingsFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError error) {
-                // Handle onCancelled event
+                // Handle onCancelled event in case of error
             }
         });
     }
