@@ -97,7 +97,7 @@ public class ClickPostFragment extends Fragment {
 
             }
         });
-        //Now you can use clickPostImage and clickPostDescription as needed
+        // Now you can use clickPostImage and clickPostDescription as needed
 
         return view;
     }
