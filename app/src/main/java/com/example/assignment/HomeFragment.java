@@ -98,6 +98,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -111,7 +112,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
          dateTextView = view.findViewById(R.id.date_text);
          greetingTextView = view.findViewById(R.id.greeting_text);
