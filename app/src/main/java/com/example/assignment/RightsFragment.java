@@ -76,9 +76,9 @@ public class RightsFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-         super.onViewCreated(view, savedInstanceState);
+        super.onViewCreated(view, savedInstanceState);
 
-        ListView listView = view.findViewById(R.id.listview);
+         ListView listView = view.findViewById(R.id.listview);
         List<RightData> rightDataList = RightReader.readRightData(requireContext());
 
 
